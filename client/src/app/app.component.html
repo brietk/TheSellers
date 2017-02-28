@@ -1,0 +1,71 @@
+<h1>
+  {{title}}
+</h1>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<div class="container">
+  <div class="row">
+    
+    <div class="col-sm-4 col-md-3 col-lg-2">
+      
+    </div>
+  </div>
+</div>
+  <ul>
+  <li *ngFor="let s of sellers">
+    {{s.name}}
+  </li>
+</ul>
+<button (click)="onAddSeller()">Bæta við</button>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">Nafn Seljenda</div>
+    <div *ngFor="let s of sellers">{{s.name}}</div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+      <div class="panel panel-default">
+          <div class="panel-heading">Nafn Seljenda</div>
+    <div class="col-sm-4">
+
+          <div class = "row" *ngFor="let s of sellers">{{s.name}}</div>
+    </div>
+    <div class="col-sm-4" style="background-color:lavenderblush;">.col-sm-4</div>
+  </div>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading row">
+        <div class="col-sm-4"><h3 class="panel-heading">Nafn Seljenda</h3></div>
+        <div class="col-sm-4"><h3 class="panel-title">Flokkur</h3></div>
+    </div>
+    <div class="panel-body row">
+    <div class="col-sm-4"><p class="panel-body" *ngFor="let s of sellers">{{s.name}}</p></div>
+    <div class="col-sm-4"><p class="panel-body" *ngFor="let s of sellers">{{s.category}}</p></div>
+</div>
+
+<!--
+<div *ngIf="seller">
+<h2>{{seller.name}}</h2>
+
+<img src="{{seller.imagePath}}" alt = "Image of the seller" />
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-md-3 col-lg-2">
+    </div>
+  </div>
+</div>
+-->
