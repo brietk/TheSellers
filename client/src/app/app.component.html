@@ -1,6 +1,16 @@
 <h1>
   {{title}}
 </h1>
+
+
+<ngb-alert type="info">
+  Nú er gaman
+</ngb-alert>
+
+<button (click)="addSeller()">Add seller</button>
+
+<template ngbModalContainer></template>
+
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -9,6 +19,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading row">
+        <div class="col-sm-4"><h3 class="panel-heading">Nafn Seljenda</h3></div>
+        <div class="col-sm-4"><h3 class="panel-title">Flokkur</h3></div>
+    </div>
+    <div class="panel-body row">
+    <div class="col-sm-4"><p class="panel-body" *ngFor="let s of sellers">{{s.name}}</p></div>
+    <div class="col-sm-4"><p class="panel-body" *ngFor="let s of sellers">{{s.category}}</p></div>
+</div>
+<!--
 
 <div class="container">
   <div class="row">
@@ -54,7 +76,7 @@
     <div class="col-sm-4"><p class="panel-body" *ngFor="let s of sellers">{{s.name}}</p></div>
     <div class="col-sm-4"><p class="panel-body" *ngFor="let s of sellers">{{s.category}}</p></div>
 </div>
-
+-->
 <!--
 <div *ngIf="seller">
 <h2>{{seller.name}}</h2>
