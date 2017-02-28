@@ -1,26 +1,33 @@
 import { Component, OnInit } from '@angular/core';
- import { SellersService, Seller } from './sellers.service';
+//import { SellersService, Seller } from './sellers.service';
+import { SellersService, SellerProduct } from './sellers.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {SellerDlgComponent } from './seller-dlg/seller-dlg.component';
+import { SellerDlgComponent } from './seller-dlg/seller-dlg.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-//export class AppComponent implements OnInit {
-  export class AppComponent {
+  export class AppComponent implements OnInit {
+  //export class AppComponent {
   title = 'Söluaðilar!';
-  private sellers: Seller[];
+  //private sellers: Seller[];
+  products: SellerProduct[];
+
 constructor(private modalService: NgbModal, private service: SellersService){}
 
-
  ngOnInit(){
+   /*
     this.service.getSellers().subscribe(result => {
       this.sellers = result;
     });
+    */
+    //TODO: ekki hafa 1 harðkóðað, heldur sækja úr urlinu.
+    this.service.getSellerProducts(1).subscribe(result => {
+      this.products = result;
+    });
  }
-
 
 addSeller(){ 
   const modalInstance = this.modalService.open(SellerDlgComponent);
