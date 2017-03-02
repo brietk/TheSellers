@@ -1,0 +1,22 @@
+div.html {
+        vertical-align: top;
+    display: inline-block;
+}
+.image {
+    float: left;
+    max-width: 30%;
+    max-height: 30%;
+
+}
+
+.sellername {
+    overflow: hidden;
+    padding-left: 10px;
+}
+
+.sellercat {
+    overflow: hidden;
+    padding-left: 10px;
+
+}
+

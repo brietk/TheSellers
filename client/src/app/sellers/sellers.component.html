@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="heading">Nafn Seljenda</div>
+  </div>
+
+  <div class="info" *ngFor="let s of sellers">
+   
+   <a [routerLink]="['/sellers', s.id]">{{s.name}}</a>
+  </div>
+
+
+  <div class="heading">Flokkur</div>
+ <!-- <div *ngFor="let s of sellers">
+    {{s.category}}
+  </div>-->
+
+
+
+
+<ngb-alert type="info">
+  Nú er gaman
+</ngb-alert>
+
+<button (click)="addSeller()">Add seller</button>
+
+<template ngbModalContainer></template>
+

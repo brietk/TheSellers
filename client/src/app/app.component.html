@@ -2,8 +2,14 @@
   {{title}}
 </h1>
 
+<router-outlet></router-outlet>
+<!--<router-outlet> </router-outlet> -->
+<!--
+
 <div *ngFor="let p of products">
-    <app-product-card [product] = "p">
+    <app-product-card 
+      [product] = "p"
+      (productUpdated)="onProductEdited($event)">
       
     </app-product-card>
 </div>
@@ -35,6 +41,7 @@
     <div class="col-sm-4"><p class="panel-body" *ngFor="let s of sellers">{{s.name}}</p></div>
     <div class="col-sm-4"><p class="panel-body" *ngFor="let s of sellers">{{s.category}}</p></div>
 </div>
+-->
 <!--
 
 <div *ngFor="let p of products">

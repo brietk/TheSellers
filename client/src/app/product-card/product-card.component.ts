@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 //dabs segir að þetta eigi að vera í sér skrá.
 import { SellerProduct } from '../sellers.service';
 
@@ -12,9 +12,18 @@ export class ProductCardComponent implements OnInit {
   @Input()
   product: SellerProduct;
 
+  @Output()
+  productUpdated = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  OnEdit() {
+    //samtalsglugga væri hægt - nuna harðkoða
+    //her erum við að syna að það hafa orðnar breytingar með harðkoða
+    this.product.name = "smuu";
+    this.productUpdated.emit(this.product);
   }
 
 }

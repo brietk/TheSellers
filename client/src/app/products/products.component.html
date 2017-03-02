@@ -1,0 +1,19 @@
+<div class="html">
+<div *ngIf="seller">
+
+<img class="image" src="{{seller.imagePath}}" alt = "Image of the seller" />
+<h3 class="sellername">{{seller.name}}</h3>
+<h4 class="sellercat"> {{seller.category}}</h4>
+</div>
+</div>
+<span class="test">
+<div *ngFor="let p of products">
+    <app-product-card 
+      [product] = "p"
+      (productUpdated)="onProductEdited($event)">
+      
+    </app-product-card>
+</div>
+</span>
+
+

@@ -17,6 +17,7 @@ export interface SellerProduct {
   name: string;
   price: number;
   quantitySold: number;
+  quantityInStock: number;
   imagePath: string;
 }
 
@@ -45,5 +46,7 @@ export class SellersService {
       return <SellerProduct[]> response.json();
     });
   }
+
+  
 
 }

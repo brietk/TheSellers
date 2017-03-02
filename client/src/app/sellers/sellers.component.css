@@ -1,0 +1,11 @@
+.container{
+        display:inline-block;
+        border:2px solid #000;
+        padding:20px;
+        margin-left: 10px;
+}
+
+
+.heading {
+    font-weight: bold;
+}
