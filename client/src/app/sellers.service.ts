@@ -49,7 +49,7 @@ export class SellersService {
   }
 
   //POST add seller
-  addSeller(name: string, category: string, imagePath: string): Observable<Seller> {
+  postSeller(name: string, category: string, imagePath: string): Observable<Seller> {
 
     var toAdd = JSON.stringify({
       name: name,

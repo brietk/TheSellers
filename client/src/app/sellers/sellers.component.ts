@@ -23,6 +23,10 @@ constructor(private modalService: NgbModal, private service: SellersService){}
   addSeller(){ 
   const modalInstance = this.modalService.open(SellerDlgComponent);
   modalInstance.componentInstance.sellerName =  "Daníel";
+  modalInstance.componentInstance.category = "Hannyrðir";
+  modalInstance.componentInstance.imagePath =  "http://example.com";
+  modalInstance.componentInstance.id =  "7";
+  
   /*    name: "Daníel",
     category: "Hannyrðir",
     imagePath: "http://example.com",
