@@ -6,7 +6,8 @@
 </div>
 <div class="modal-body">
   <input [(ngModel)]="sellerName" autofocus/>
-  <!-- vantar category og fyrirtæki-->
+  <textarea [(ngModel)]="sellerCategory" rows="10" dols="30"></textarea>
+  <img [(src)]="SellerImagePath" alt="image"/>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn-btn-secondary" (click)="onCancel()">Cancel</button>

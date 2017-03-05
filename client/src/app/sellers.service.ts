@@ -24,8 +24,9 @@ export interface SellerProduct {
 @Injectable()
 //SellersService á samskipti við bakendann
 export class SellersService {
-
+  errorHandler: SellersService
   constructor(private http: Http) { }
+
 
 // get all sellers
   getSellers(): Observable<Seller[]> {
@@ -47,6 +48,21 @@ export class SellersService {
     });
   }
 
-  
+
+  //POST add seller
+  addSeller(name: string, category: string, imagePath: string): Observable<Seller> {
+
+    var toAdd = JSON.stringify({
+      name: name,
+      category: category,
+      imagePath: imagePath
+    })
+
+    console.error(toAdd);
+    return this.http.post("http://localhost:5000/api/sellers/", toAdd).map(response => {
+      return <Seller> response.json();
+    });
+
+  }
 
 }

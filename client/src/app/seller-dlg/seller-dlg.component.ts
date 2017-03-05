@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {SellersService, SellerProduct } from '../sellers.service';
+import { Router, ActivatedRoute } from "@angular/router";
 
 export class Seller {
   name: string;
@@ -21,7 +23,10 @@ export class SellerDlgComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
+    var successHandler = (result)=> { this.seller = result;}
+    var errorHandler = (err) => { console.log("something failed");//TODO
   }
+  };
 
   onCancel(){
     //loka glugganum
@@ -32,4 +37,6 @@ export class SellerDlgComponent implements OnInit {
     this.activeModal.close(this.seller);
 
   }
+
+
 }
