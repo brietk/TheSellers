@@ -1,11 +1,15 @@
 <div class="html">
-<div *ngIf="seller">
+  <div *ngIf="seller">
 
-<img class="image" src="{{seller.imagePath}}" alt = "Image of the seller" />
-<h3 class="sellername">{{seller.name}}</h3>
-<h4 class="sellercat"> {{seller.category}}</h4>
+    <img class="image" src="{{seller.imagePath}}" alt="Image of the seller" />
+    <h3 class="sellername">{{seller.name}}</h3>
+    <h4 class="sellercat"> {{seller.category}}</h4>
+  </div>
 </div>
-</div>
+
+<button (click)="addProduct()">Bæta við vöru</button>
+
+
 <span class="test">
 <div *ngFor="let p of products">
     <app-product-card 
@@ -16,4 +20,6 @@
 </div>
 </span>
 
+<h3>{{error}}</h3>
 
+<template ngbModalContainer></template>
