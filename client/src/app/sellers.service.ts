@@ -14,7 +14,7 @@ export interface Seller {
 
 export interface SellerProduct {
   id: number;
-  productName: string;
+  name: string;
   price: number;
   quantitySold: number;
   quantityInStock: number;
@@ -65,11 +65,11 @@ export class SellersService {
 
   }
 
-  postProduct(id: number, productName: string, price: any, quantityInStock: any, imagePath: string): Observable<SellerProduct> {
+  postProduct(id: number, name: string, price: any, quantityInStock: any, imagePath: string): Observable<SellerProduct> {
     console.log("inni í postProduct");
 
     var toAdd = JSON.stringify({
-      name: productName,
+      name: name,
       price: price,
       quantityInStock: quantityInStock,
       path: imagePath

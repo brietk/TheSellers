@@ -1,11 +1,38 @@
-.container{
-        display:inline-block;
-        border:2px solid #000;
-        padding:20px;
-        margin-left: 10px;
+.addbutton {
+    margin-left: 57%
 }
 
+.container {
+    border: 2px solid #000;
+    float:left;
+    width: 60%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
 
-.heading {
-    font-weight: bold;
+.heading1, .heading2 {
+    font-weight: bold;       
+    width: 256%;
+    border-bottom: 2px solid #000;
+    padding-top: 10px;
+}
+
+.box1 {
+   /* border: 2px solid #000;*/
+    float:left;
+    width:40%;
+    height:100%;
+}
+.box11 {
+    float:left;
+    height:100%;
+}
+.box2 {
+   /* border: 2px solid #000;*/
+    float:left;
+    width:20%;
+}
+.box22{
+    float:left;
+    width:100%;
 }

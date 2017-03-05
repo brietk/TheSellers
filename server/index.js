@@ -20,12 +20,12 @@ function createSeller(id, name, category, img) {
 }
 
 // Another helper function.
-function createProduct(sellerid, id, productName, price, quantitySold, quantityInStock, path) {
+function createProduct(sellerid, id, name, price, quantitySold, quantityInStock, path) {
 	return {
 		id: sellerid,
 		product: {
 			id: id,
-			name: productName,
+			name: name,
 			price: price,
 			quantitySold: quantitySold,
 			quantityInStock: quantityInStock,

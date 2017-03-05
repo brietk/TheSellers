@@ -45,16 +45,20 @@ export class ProductsComponent implements OnInit {
     this.service.getSellerById(this.id2).subscribe(successHandler, errorHandler);
   }
 
+editProduct(name : string)
+{
+
+}
   addProduct() {
 
     const modalInstance = this.modalService.open(ProductDlgComponent);
-    modalInstance.componentInstance.productName =  "Súkkulaðirúsínur";
+    modalInstance.componentInstance.name =  "Súkkulaðirúsínur";
     modalInstance.componentInstance.price = 500;
     modalInstance.componentInstance.quantityInStock = 40;
   
   modalInstance.result.then(obj =>{
     console.log("Dialog was closed using OK");
-    this.service.postProduct(this.id2, obj.productName, obj.price, obj.quantityInStock, obj.imagePath).subscribe(data => {
+    this.service.postProduct(this.id2, obj.name, obj.price, obj.quantityInStock, obj.imagePath).subscribe(data => {
     this.refreshList();
       }, error => {
           console.log(error.json());

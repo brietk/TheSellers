@@ -20,10 +20,11 @@ export class ProductCardComponent implements OnInit {
   }
 
   OnEdit() {
+    alert(this.product.price);
     //samtalsglugga væri hægt - nuna harðkoða
     //her erum við að syna að það hafa orðnar breytingar með harðkoða
-    this.product.productName = "smuu";
-    this.productUpdated.emit(this.product);
+   // this.product.name = "smuu";
+   // this.productUpdated.emit(this.product);
   }
 
 
