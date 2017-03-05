@@ -7,13 +7,10 @@
 <div class="modal-body">
   Heiti vöru: <input [(ngModel)]="productName" autofocus/><br/>
   Verð: <input [(ngModel)]="price"/><br/>
-  Einingafjöldi: <input [(ngModel)]="quantityInStock"/>
-
-  <!-- bæta við upplýsingum um vöru -->
-
-
+  Einingafjöldi: <input [(ngModel)]="quantityInStock"/><br/>
+  Mynd: <input [(ngModel)]="imagePath"/>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn-btn-secondary" (click)="onCancel()">Cancel</button>
   <button type="button" class="btn-btn-success" (click)="onOK()">Ok</button>
-</div>
+</div>  
