@@ -1,6 +1,6 @@
 // samskipti við bakendan
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/rx';
 
@@ -47,20 +47,24 @@ export class SellersService {
     });
   }
 
-  postProduct(productName: string, price: any, quantityInStock: any, imagePath: string): Observable<SellerProduct> {
+  postProduct(id: number, productName: string, price: any, quantityInStock: any, imagePath: string): Observable<SellerProduct> {
+    console.log("inni í postProduct");
 
     var toAdd = JSON.stringify({
-      productName: name,
+      name: productName,
       price: price,
       quantityInStock: quantityInStock,
-      imagePath: imagePath
-    })
-
-    console.error(toAdd);
-    return this.http.post(`http://localhost:5000/api/sellers`, toAdd).map(response => {
-      return <SellerProduct> response.json();
+      path: imagePath
     });
 
+    console.log(toAdd);
+
+    let head = new Headers({'Content-Type': 'application/json'});
+
+    return this.http.post(`http://localhost:5000/api/sellers/${id}/products`, toAdd, {headers : head}).map(response => {
+      console.log(response);
+      return <SellerProduct> response.json();
+    });
   }
 
   }

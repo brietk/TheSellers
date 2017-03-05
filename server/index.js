@@ -160,7 +160,6 @@ app.get("/api/sellers/:id/products", (req, res) => {
 
 // Adds a product to the catalog of a given seller:
 app.post("/api/sellers/:id/products", (req, res) => {
-
 	// Validate seller:
 	var seller = findSellerById(parseInt(req.params.id));
 	if (!seller) {

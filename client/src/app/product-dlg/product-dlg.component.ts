@@ -21,8 +21,6 @@ export interface SellerProduct {
 
 export class ProductDlgComponent implements OnInit {
 
-  //product: SellerProduct; 
-  // næ ekki að láta object sendast í activeModal.
   productName: string;
   price: number;
   quantitySold: number;
@@ -32,7 +30,7 @@ export class ProductDlgComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit() { 
-    //this.modalService.postProduct(this.productName, this.category, this.imagePath).descripe
+  
   }
 
   onCancel(){
@@ -41,9 +39,13 @@ export class ProductDlgComponent implements OnInit {
   }
 
   onOK(){
-    this.activeModal.close(this.productName);
-    this.activeModal.close(this.price);
-    this.activeModal.close(this.quantityInStock);
+    const product: SellerProduct = { id: 0, 
+                                     productName: this.productName, 
+                                     price: this.price, 
+                                     quantitySold: 0, 
+                                     quantityInStock: this.quantityInStock,  
+                                     imagePath: this.imagePath };
+    this.activeModal.close(product);
   }
 
   
