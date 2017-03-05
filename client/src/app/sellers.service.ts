@@ -49,8 +49,8 @@ export class SellersService {
   }
 
   //POST add seller
-  addSeller(name: string, category: string, imagePath: string): Observable<Seller> {
-
+  postSeller(id: number, name: string, category: string, imagePath: string): Observable<Seller> {
+ console.log("inni í postSeller");
     var toAdd = JSON.stringify({
       name: name,
       category: category,
@@ -59,7 +59,11 @@ export class SellersService {
 
           console.error(toAdd);
 
-    return this.http.post("http://localhost:5000/api/sellers/", toAdd).map(response => {
+  let head = new Headers({'Content-Type': 'application/json'});
+
+    return this.http.post("http://localhost:5000/api/sellers", toAdd, {headers : head}).map(response => {
+      console.log(response);
+
       return <Seller> response.json();
     });
 
