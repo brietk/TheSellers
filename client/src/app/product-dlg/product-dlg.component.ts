@@ -2,17 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellersService, Seller, SellerProduct } from '../sellers.service';
 
-/*
-export interface SellerProduct {
-  id: number;
-  productName: string;
-  price: number;
-  quantitySold: number;
-  quantityInStock: number;
-  imagePath: string;
-}
-*/
-
 @Component({
   selector: 'app-product-dlg',
   templateUrl: './product-dlg.component.html',
@@ -21,7 +10,7 @@ export interface SellerProduct {
 
 export class ProductDlgComponent implements OnInit {
 
-  productName: string;
+  name: string;
   price: number;
   quantitySold: number;
   quantityInStock: number;
@@ -40,14 +29,11 @@ export class ProductDlgComponent implements OnInit {
 
   onOK(){
     const product: SellerProduct = { id: 0, 
-                                     productName: this.productName, 
+                                     name: this.name, 
                                      price: this.price, 
                                      quantitySold: 0, 
                                      quantityInStock: this.quantityInStock,  
                                      imagePath: this.imagePath };
     this.activeModal.close(product);
   }
-
-  
-
 }

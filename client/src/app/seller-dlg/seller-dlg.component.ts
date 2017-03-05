@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {SellersService, SellerProduct } from '../sellers.service';
 import { Router, ActivatedRoute } from "@angular/router";
-=======
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
->>>>>>> 2ad12e33a2b6cd47b75b15f1b7f5ee528d41cd91
 
 export class Seller {
   name: string;
