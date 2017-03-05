@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SellersService, Seller, SellerProduct } from '../sellers.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellerDlgComponent } from '../seller-dlg/seller-dlg.component';
+import { ProductDlgComponent } from '../product-dlg/product-dlg.component';
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -17,23 +18,49 @@ export class ProductsComponent implements OnInit {
   
   id2: number;
   name: Seller;
-  constructor(private modalService: NgbModal, private service: SellersService, private router: Router,  private route: ActivatedRoute) { }
+  error: string;
+
+  constructor(private modalService: NgbModal, private service: SellersService, 
+  private router: Router,  private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.id2 = this.route.snapshot.params['id'];
-    console.log("selerrid " + this.id2);
+    console.log("sellerrid " + this.id2);
     this.service.getSellerProducts(this.id2).subscribe(result => {
       this.products = result;
     });
 
     var successHandler = (result)=> { this.seller = result;}
-    var errorHandler = (err) => { console.log("something failed");//TODO
+    var errorHandler = (err) => { 
+      console.log("something failed with status: " + err.status);
+      if(err.status == 404) {
+        console.log("yes, it faild");
+        this.error = "Sorry seller with id: " + this.id2 + " does not exist";
+      }
   }
     this.service.getSellerById(this.id2).subscribe(successHandler, errorHandler);
 
-  
-
   }
 
-}
+  addProduct() {
 
+    const modalInstance = this.modalService.open(ProductDlgComponent);
+    modalInstance.componentInstance.productName =  "Súkkulaðirúsínur";
+    modalInstance.componentInstance.price = 500;
+    modalInstance.componentInstance.quantityInStock = 40;
+  
+  
+  /*    name: "Daníel",
+    category: "Hannyrðir",
+    imagePath: "http://example.com",
+    id: 7*/
+  modalInstance.result.then(obj =>{
+    console.log("Dialog was closed using OK");
+    console.log(obj);
+  }).catch(err => {
+    console.log("Dialog was cancelled");
+    console.log(err);
+  });
+
+  }
+}

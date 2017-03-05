@@ -11,6 +11,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { SellerDlgComponent } from './seller-dlg/seller-dlg.component';
 import { SellersComponent } from './sellers/sellers.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductDlgComponent } from './product-dlg/product-dlg.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProductsComponent } from './products/products.component';
     SellersComponent,
     ProductsComponent,
     SellersComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductDlgComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,6 @@ import { ProductsComponent } from './products/products.component';
   ],
   providers: [SellersService],
   bootstrap: [AppComponent],
-  entryComponents: [SellerDlgComponent, ProductCardComponent]
+  entryComponents: [SellerDlgComponent, ProductDlgComponent, ProductCardComponent]
 })
 export class AppModule { }

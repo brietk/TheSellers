@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//import { SellersService, Seller } from './sellers.service';
 import { SellersService, Seller, SellerProduct } from './sellers.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellerDlgComponent } from './seller-dlg/seller-dlg.component';

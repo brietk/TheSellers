@@ -1,17 +1,16 @@
 <div class="modal-header">
-  <h4 class="modal-title">Add seller:</h4>
+  <h4 class="modal-title">Bæta við vöru: </h4>
   <button type="button" class="close" aria-label="Close" (click)="onCancel()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
+  Heiti vöru: <input [(ngModel)]="productName" autofocus/><br/>
+  Verð: <input [(ngModel)]="price"/><br/>
+  Einingafjöldi: <input [(ngModel)]="quantityInStock"/>
 
-  <input [(ngModel)]="sellerName" autofocus/>
-  <textarea [(ngModel)]="sellerCategory" rows="10" dols="30"></textarea>
-  <img [(src)]="SellerImagePath" alt="image"/>
+  <!-- bæta við upplýsingum um vöru -->
 
-  <input [(ngModel)]="seller" autofocus/>
-  <!-- vantar category og fyrirtæki-->
 
 </div>
 <div class="modal-footer">

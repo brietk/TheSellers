@@ -7,14 +7,14 @@ import 'rxjs/rx';
 
 export interface Seller {
   id: number;
-  name: string;
+  sellerName: string;
   category: string;
   imagePath: string;
 }
 
 export interface SellerProduct {
   id: number;
-  name: string;
+  productName: string;
   price: number;
   quantitySold: number;
   quantityInStock: number;
@@ -48,7 +48,6 @@ export class SellersService {
     });
   }
 
-
   //POST add seller
   addSeller(name: string, category: string, imagePath: string): Observable<Seller> {
 
@@ -58,9 +57,27 @@ export class SellersService {
       imagePath: imagePath
     })
 
-    console.error(toAdd);
+          console.error(toAdd);
+
     return this.http.post("http://localhost:5000/api/sellers/", toAdd).map(response => {
       return <Seller> response.json();
+    });
+
+  }
+
+  postProduct(productName: string, price: any, quantityInStock: any, imagePath: string): Observable<SellerProduct> {
+
+    var toAdd = JSON.stringify({
+      productName: name,
+      price: price,
+      quantityInStock: quantityInStock,
+      imagePath: imagePath
+    })
+
+    console.error(toAdd);
+
+    return this.http.post("http://localhost:5000/api/sellers/", toAdd).map(response => {
+      return <SellerProduct> response.json();
     });
 
   }
