@@ -34,7 +34,7 @@ constructor(private modalService: NgbModal, private service: SellersService){}
     console.log("Dialog was cancelled");
     console.log(err);
   });
-
+  
 }
 
 }
