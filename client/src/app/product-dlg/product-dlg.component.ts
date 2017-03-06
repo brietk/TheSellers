@@ -15,11 +15,11 @@ export class ProductDlgComponent implements OnInit {
   quantitySold: number;
   quantityInStock: number;
   imagePath: string;
+  isEditMode: boolean; 
   
   constructor(public activeModal: NgbActiveModal) {}
 
-  ngOnInit() { 
-  
+  ngOnInit() {
   }
 
   onCancel(){

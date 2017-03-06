@@ -1,27 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { SellersService, Seller, SellerProduct } from '../sellers.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellerDlgComponent } from '../seller-dlg/seller-dlg.component';
 import { ProductDlgComponent } from '../product-dlg/product-dlg.component';
 import { Router, ActivatedRoute } from "@angular/router";
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
+  providers: [ ToastsManager ]
 })
+
 export class ProductsComponent implements OnInit {
   
   products: SellerProduct[];
-  //sellers: Seller[];
   private seller: Seller;
   
   id2: number;
-  name: Seller;
   error: string;
 
   constructor(private modalService: NgbModal, private service: SellersService, 
-  private router: Router,  private route: ActivatedRoute) { }
+  private router: Router,  private route: ActivatedRoute, public toastr: ToastsManager, 
+  vcr: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   refreshList(){
       this.service.getSellerProducts(this.id2).subscribe(result => {
@@ -45,16 +49,13 @@ export class ProductsComponent implements OnInit {
     this.service.getSellerById(this.id2).subscribe(successHandler, errorHandler);
   }
 
-editProduct(name : string)
-{
-
-}
   addProduct() {
 
     const modalInstance = this.modalService.open(ProductDlgComponent);
-    modalInstance.componentInstance.name =  "Súkkulaðirúsínur";
-    modalInstance.componentInstance.price = 500;
-    modalInstance.componentInstance.quantityInStock = 40;
+    modalInstance.componentInstance.isEditMode = false;
+    //modalInstance.componentInstance.name =  "Súkkulaðirúsínur";
+    //modalInstance.componentInstance.price = 500;
+    //modalInstance.componentInstance.quantityInStock = 40;
   
   modalInstance.result.then(obj =>{
     console.log("Dialog was closed using OK");
@@ -70,4 +71,26 @@ editProduct(name : string)
   });
 
   }
-}
+
+  showSuccess() {
+    alert("haaaa");
+        this.toastr.success('You are awesome!', 'Success!');
+      }
+
+      showError() {
+        this.toastr.error('This is not good!', 'Oops!');
+      }
+    
+      showWarning() {
+        this.toastr.warning('You are being warned.', 'Alert!');
+      }
+    
+      showInfo() {
+        this.toastr.info('Just some information for you.');
+      }
+      
+      showCustom() {
+        this.toastr.custom('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
+      }
+} 
+  

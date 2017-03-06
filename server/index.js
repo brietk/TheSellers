@@ -185,6 +185,8 @@ app.post("/api/sellers/:id/products", (req, res) => {
 
 app.put("/api/sellers/:id/products/:prodId", (req, res) => {
 	// Validate seller:
+	console.log(req.params.id);
+	console.log(req.params.prodId);
 	var seller = findSellerById(parseInt(req.params.id));
 	if (!seller) {
 		res.statusCode = 404;

@@ -12,6 +12,7 @@ import { SellerDlgComponent } from './seller-dlg/seller-dlg.component';
 import { SellersComponent } from './sellers/sellers.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDlgComponent } from './product-dlg/product-dlg.component';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ProductDlgComponent } from './product-dlg/product-dlg.component';
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
+    ToastModule.forRoot(),
     RouterModule.forRoot([{
       path: "",
       redirectTo: "sellers",

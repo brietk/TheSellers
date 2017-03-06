@@ -65,6 +65,7 @@ export class SellersService {
 
   }
 
+  //POST add product
   postProduct(id: number, name: string, price: any, quantityInStock: any, imagePath: string): Observable<SellerProduct> {
     console.log("inni í postProduct");
 
@@ -80,6 +81,27 @@ export class SellersService {
     let head = new Headers({'Content-Type': 'application/json'});
 
     return this.http.post(`http://localhost:5000/api/sellers/${id}/products`, toAdd, {headers : head}).map(response => {
+      console.log(response);
+
+      return <SellerProduct> response.json();
+    });
+  }
+
+  putProduct(id: number, prodId: number, name: string, price: any, quantityInStock: any, imagePath: string): Observable<SellerProduct> {
+    console.log("inni í putProduct");
+
+    var toAdd = JSON.stringify({
+      name: name,
+      price: price,
+      quantityInStock: quantityInStock,
+      imagePath: imagePath
+    });
+
+    console.log(toAdd);
+
+    let head = new Headers({'Content-Type': 'application/json'});
+
+    return this.http.put(`http://localhost:5000/api/sellers/${id}/products/${prodId}`, toAdd, {headers : head}).map(response => {
       console.log(response);
 
       return <SellerProduct> response.json();
