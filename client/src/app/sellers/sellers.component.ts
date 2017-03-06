@@ -15,6 +15,7 @@ export class SellersComponent implements OnInit {
     sellers: Seller[];
     id: number;
     error: string;
+    name: Seller;
 
 constructor(private modalService: NgbModal, private service: SellersService, 
   private router: Router,  private route: ActivatedRoute) { }
@@ -44,13 +45,13 @@ refreshList(){
 
   addSeller(){ 
   const modalInstance = this.modalService.open(SellerDlgComponent);
-  modalInstance.componentInstance.sellerName =  "Daníel";
+  modalInstance.componentInstance.name =  "Daníel";
   modalInstance.componentInstance.category = "Hannyrðir";
   modalInstance.componentInstance.imagePath =  "http://example.com";
   
    modalInstance.result.then(obj =>{
     console.log("Dialog was closed using OK");
-    this.service.postSeller(this.id, obj.sellerName, obj.category, obj.imagePath).subscribe(data => {
+    this.service.postSeller(this.id, obj.name, obj.category, obj.imagePath).subscribe(data => {
     this.refreshList();
       }, error => {
           console.log(error.json());

@@ -7,7 +7,7 @@ import 'rxjs/rx';
 
 export interface Seller {
   id: number;
-  sellerName: string;
+  name: string;
   category: string;
   imagePath: string;
 }
