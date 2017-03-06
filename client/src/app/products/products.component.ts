@@ -52,10 +52,16 @@ export class ProductsComponent implements OnInit {
   addProduct() {
 
     const modalInstance = this.modalService.open(ProductDlgComponent);
+<<<<<<< HEAD
     modalInstance.componentInstance.isEditMode = false;
     //modalInstance.componentInstance.name =  "Súkkulaðirúsínur";
     //modalInstance.componentInstance.price = 500;
     //modalInstance.componentInstance.quantityInStock = 40;
+=======
+    modalInstance.componentInstance.name =  "";
+    modalInstance.componentInstance.price = "";
+    modalInstance.componentInstance.quantityInStock = "";
+>>>>>>> 785d66620f1d8c108d871fe912085a759b6335fe
   
   modalInstance.result.then(obj =>{
     console.log("Dialog was closed using OK");

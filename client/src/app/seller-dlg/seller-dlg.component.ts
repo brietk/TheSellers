@@ -19,14 +19,13 @@ export class Seller {
 export class SellerDlgComponent implements OnInit {
 
   seller: Seller;
+  name: string;
+  category: string;
+  imagePath: string;
 
   constructor(public activeModal: NgbActiveModal) { }
 
-  ngOnInit() {
-    var successHandler = (result)=> { this.seller = result;}
-    var errorHandler = (err) => { console.log("something failed");//TODO
-  }
-  };
+  ngOnInit() {}
 
   onCancel(){
     //loka glugganum
@@ -34,7 +33,11 @@ export class SellerDlgComponent implements OnInit {
   }
 
   onOK(){
-    this.activeModal.close(this.seller);
+    const seller: Seller = { id: 0, 
+                                name: this.name, 
+                                category: this.category,
+                                imagePath: this.imagePath };
+    this.activeModal.close(seller);
 
   }
 

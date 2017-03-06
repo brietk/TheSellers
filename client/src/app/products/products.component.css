@@ -12,6 +12,7 @@ div.html {
 .sellername {
     overflow: hidden;
     padding-left: 10px;
+    padding-bottom: 5px;
 }
 
 .sellercat {
