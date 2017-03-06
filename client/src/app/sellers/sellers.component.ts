@@ -45,9 +45,9 @@ refreshList(){
 
   addSeller(){ 
   const modalInstance = this.modalService.open(SellerDlgComponent);
-  modalInstance.componentInstance.name =  "Daníel";
-  modalInstance.componentInstance.category = "Hannyrðir";
-  modalInstance.componentInstance.imagePath =  "http://example.com";
+  modalInstance.componentInstance.name =  "";
+  modalInstance.componentInstance.category = "";
+  modalInstance.componentInstance.imagePath =  "";
   
    modalInstance.result.then(obj =>{
     console.log("Dialog was closed using OK");

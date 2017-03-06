@@ -52,9 +52,9 @@ editProduct(name : string)
   addProduct() {
 
     const modalInstance = this.modalService.open(ProductDlgComponent);
-    modalInstance.componentInstance.name =  "Súkkulaðirúsínur";
-    modalInstance.componentInstance.price = 500;
-    modalInstance.componentInstance.quantityInStock = 40;
+    modalInstance.componentInstance.name =  "";
+    modalInstance.componentInstance.price = "";
+    modalInstance.componentInstance.quantityInStock = "";
   
   modalInstance.result.then(obj =>{
     console.log("Dialog was closed using OK");
