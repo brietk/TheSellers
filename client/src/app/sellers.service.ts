@@ -28,20 +28,20 @@ export class SellersService {
   constructor(private http: Http) { }
 
 
-// get all sellers
+// GET all sellers
   getSellers(): Observable<Seller[]> {
     return this.http.get("http://localhost:5000/api/sellers").map(response => {
       return <Seller[]> response.json();
     });
   }
 
-// get seller with given id
+// GET seller with given id
   getSellerById(id: number): Observable<Seller>{
     return this.http.get(`http://localhost:5000/api/sellers/${id}`).map(response => {
       return <Seller> response.json();
     });
   }
-// get all products from one seller
+// GET all products from one seller
   getSellerProducts(id: number): Observable<SellerProduct[]> {
     return this.http.get(`http://localhost:5000/api/sellers/${id}/products`).map(response => {
       return <SellerProduct[]> response.json();
@@ -69,17 +69,21 @@ export class SellersService {
 
   }
 
+//PUT update seller
   putSeller(id: number, name: string, category: string, imagePath: string): Observable<Seller> {
-
+  console.log("inni í putSeller");
+  
     var toEdit = JSON.stringify({
       id: id,
       name: name,
       category: category,
       imagePath: imagePath
-    });
+    })
+
+    console.log(toEdit);
 
     let head = new Headers({'Content-Type': 'application/json'});
-    console.log("komin i putSeller");
+
     return this.http.put(`http://localhost:5000/api/sellers/${id}`, toEdit, {headers : head}).map(response => {
       console.log(response);
 

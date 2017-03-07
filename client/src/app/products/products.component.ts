@@ -60,6 +60,7 @@ export class ProductsComponent implements OnInit {
     this.id2 = this.route.snapshot.params['id'];
     console.log("sellerrid " + this.id2);
     this.refreshList();
+    this.refreshListSeller();
 
     var successHandler = (result)=> { this.seller = result;}
     var errorHandler = (err) => { 
@@ -101,7 +102,7 @@ export class ProductsComponent implements OnInit {
   editSeller() {
 
     const modalInstance = this.modalService.open(SellerDlgComponent);
-    modalInstance.componentInstance.imagePath = this.id2;
+    modalInstance.componentInstance.imagePath = this.seller.id;
     console.log(this.id2);
     modalInstance.componentInstance.name = this.seller.name;
     console.log(this.seller.name);
@@ -109,16 +110,14 @@ export class ProductsComponent implements OnInit {
     console.log(this.seller.category);
     modalInstance.componentInstance.imagePath = this.seller.imagePath
     console.log(this.seller.imagePath);
-    ///modalInstance.componentInstance.isEditModeSeller = true;
+    modalInstance.componentInstance.isEditModeSeller = true;
 
     modalInstance.result.then(obj => {
       console.log("Dialog was closed using OK");
-      this.service.putSeller(this.id2, obj.name, obj.category, obj.imagePath).subscribe(data => {
+      this.service.putSeller(this.seller.id, obj.name, obj.category, obj.imagePath).subscribe(data => {
+      this.refreshListSeller();
       
-        this.service.getSellers().subscribe(result => {
-        this.sellers = result;
-        });
-      }, error => {
+    }, error => {
         console.log(error.json());
       });
       console.log(obj);
