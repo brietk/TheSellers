@@ -8,6 +8,10 @@
 </div>
 
 <button (click)="addProduct()">Bæta við vöru</button>
+<button (click)="editSeller()">Breyta notanda</button>
+
+<span class="test">
+
 <button class="btn btn-default" (click)="showSuccess()">Toastr Tester</button>
 <h3>{{error}}</h3>
 <template ngbModalContainer></template>
@@ -15,6 +19,7 @@
   <ngb-tab title="Allar vörur">
     <template ngbTabContent>
   <span class="test">
+
 <div *ngFor="let p of products">
     <app-product-card 
       [product] = "p"

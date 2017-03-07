@@ -69,6 +69,24 @@ export class SellersService {
 
   }
 
+  putSeller(id: number, name: string, category: string, imagePath: string): Observable<Seller> {
+
+    var toEdit = JSON.stringify({
+      id: id,
+      name: name,
+      category: category,
+      imagePath: imagePath
+    });
+
+    let head = new Headers({'Content-Type': 'application/json'});
+    console.log("komin i putSeller");
+    return this.http.put(`http://localhost:5000/api/sellers/${id}`, toEdit, {headers : head}).map(response => {
+      console.log(response);
+
+      return <Seller> response.json();
+    });
+  }
+
   //POST add product
   postProduct(id: number, name: string, price: any, quantityInStock: any, imagePath: string): Observable<SellerProduct> {
     console.log("inni í postProduct");
