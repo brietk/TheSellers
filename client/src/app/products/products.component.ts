@@ -58,6 +58,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.id2 = this.route.snapshot.params['id'];
+    
     console.log("sellerrid " + this.id2);
     this.refreshList();
     this.refreshListSeller();
@@ -97,7 +98,6 @@ export class ProductsComponent implements OnInit {
   });
 
 }
-
 
   editSeller() {
 
