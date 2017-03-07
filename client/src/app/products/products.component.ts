@@ -51,8 +51,8 @@ export class ProductsComponent implements OnInit {
   }
 
   refreshListSeller(){
-      this.service.getSellers().subscribe(result => {
-      this.sellers = result;
+      this.service.getSellerById(this.id2).subscribe(result => {
+      this.seller = result;
     });
 }
 
