@@ -91,6 +91,7 @@ export class SellersService {
     });
   }
 
+  //PUT edit product
   putProduct(id: number, prodId: number, name: string, price: any, quantityInStock: any, imagePath: string): Observable<SellerProduct> {
     console.log("inni í putProduct");
 

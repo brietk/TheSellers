@@ -51,12 +51,13 @@ refreshList(){
   
    modalInstance.result.then(obj =>{
     console.log("Dialog was closed using OK");
+    console.log("Dlg obj: "+obj);
     this.service.postSeller(this.id, obj.name, obj.category, obj.imagePath).subscribe(data => {
     this.refreshList();
       }, error => {
           console.log(error.json());
       });
-    console.log(obj);
+    
   }).catch(err => {
     console.log("Dialog was cancelled");
     console.log(err);

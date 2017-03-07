@@ -37,8 +37,8 @@ export class SellerDlgComponent implements OnInit {
                                 name: this.name, 
                                 category: this.category,
                                 imagePath: this.imagePath };
-    this.activeModal.close(seller);
 
+    this.activeModal.close(seller);
   }
 
 

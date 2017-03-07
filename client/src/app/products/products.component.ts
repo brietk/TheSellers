@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellerDlgComponent } from '../seller-dlg/seller-dlg.component';
 import { ProductDlgComponent } from '../product-dlg/product-dlg.component';
 import { Router, ActivatedRoute } from "@angular/router";
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-products',
@@ -20,6 +20,18 @@ export class ProductsComponent implements OnInit {
   
   id2: number;
   error: string;
+
+
+  options: ToastOptions = { showCloseButton : false,
+                                    animate : "fade",
+                                    positionClass: "toast-bottom-right",
+                                    maxShown: 5,
+                                    newestOnTop: true,
+                                    toastLife: 5000,
+                                    enableHTML: false,
+                                    dismiss: "auto",
+                                    messageClass: "ProductAdded",
+                                    titleClass: ""};
 
   constructor(private modalService: NgbModal, private service: SellersService, 
   private router: Router,  private route: ActivatedRoute, public toastr: ToastsManager, 
@@ -54,11 +66,15 @@ export class ProductsComponent implements OnInit {
     const modalInstance = this.modalService.open(ProductDlgComponent);
 
     modalInstance.componentInstance.isEditMode = false;
+    modalInstance.componentInstance.name = "";
+    modalInstance.componentInstance.price = "";
+    modalInstance.componentInstance.quantityInStock = "";
   
   modalInstance.result.then(obj =>{
     console.log("Dialog was closed using OK");
     this.service.postProduct(this.id2, obj.name, obj.price, obj.quantityInStock, obj.imagePath).subscribe(data => {
     this.refreshList();
+    this.toastr.success('Vara skráð!', null, this.options);
       }, error => {
           console.log(error.json());
       });
@@ -71,24 +87,25 @@ export class ProductsComponent implements OnInit {
   }
 
   showSuccess() {
-    alert("haaaa");
-        this.toastr.success('You are awesome!', 'Success!');
-      }
 
-      showError() {
-        this.toastr.error('This is not good!', 'Oops!');
-      }
-    
-      showWarning() {
-        this.toastr.warning('You are being warned.', 'Alert!');
-      }
-    
-      showInfo() {
-        this.toastr.info('Just some information for you.');
-      }
-      
-      showCustom() {
-        this.toastr.custom('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
-      }
+  
+    this.toastr.success('Vara skráð!', null, this.options);
+}
+
+  showError() {
+    this.toastr.error('This is not good!', 'Oops!');
+  }
+
+  showWarning() {
+    this.toastr.warning('You are being warned.', 'Alert!');
+  }
+
+  showInfo() {
+    this.toastr.info('Just some information for you.');
+  }
+  
+  showCustom() {
+    this.toastr.custom('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
+  }
 } 
   
