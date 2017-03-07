@@ -24,6 +24,7 @@ export class ProductCardComponent implements OnInit {
 
   ngOnInit() {
     this.id2 = this.route.snapshot.params['id'];
+
   }
 
   OnEdit() {

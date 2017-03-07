@@ -5,13 +5,35 @@
   </button>
 </div>
 
+
+<div class="form-group" >
+<form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
 <div class="modal-body">
-  Seljandi: <input [(ngModel)]="name" autofocus/><br/>
-  Flokkur: <input [(ngModel)]="category" rows="10" dols="30"/><br/>
-  Mynd: <input [(ngModel)]="imagePath"/>
+
+  <div class="form-group"  [ngClass]="{'has-error':!complexForm.controls['sellerName'].valid && complexForm.controls['sellerName'].touched}">
+    <label>Seljandi:</label> 
+    <input class="form-control" [(ngModel)]="name" type="text" [formControl]="complexForm.controls['sellerName']" autofocus>
+            <div *ngIf="complexForm.controls['sellerName'].hasError('required') && complexForm.controls['sellerName'].touched" class="alert alert-danger">You must include a sellerName.</div>
+    </div>
+
+<div class="form-group" [ngClass]="{'has-error':!complexForm.controls['category'].valid}">
+  <label> Flokkur:</label>
+   <input class="form-control" [(ngModel)]="category" type="text" [formControl]="complexForm.controls['category']" rows="10" dols="30"> 
+   <div *ngIf="complexForm.controls['category'].hasError('required') && complexForm.controls['category'].touched" class="alert alert-danger">You must include a category.</div>
+   </div>
+
+ <div class="form-group">
+    <label>Mynd:</label> 
+    <input [(ngModel)]="imagePath" type="text" [formControl]="complexForm.controls['imagePath']" />
+    </div>
 </div>
 
 <div class="modal-footer">
     <button type="button" class="btn-btn-secondary" (click)="onCancel()">Cancel</button>
-  <button type="button" class="btn-btn-success" (click)="onOK()">Ok</button>
+
+  <button type="submit" class="btn-btn-primary" (click)="onOK()"  [disabled]="!complexForm.valid" >Ok</button>
+   
+</div>
+
+</form>
 </div>
