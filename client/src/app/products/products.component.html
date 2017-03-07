@@ -11,6 +11,15 @@
 <button (click)="editSeller()">Breyta notanda</button>
 
 <span class="test">
+
+<button class="btn btn-default" (click)="showSuccess()">Toastr Tester</button>
+<h3>{{error}}</h3>
+<template ngbModalContainer></template>
+<ngb-tabset>
+  <ngb-tab title="Allar vörur">
+    <template ngbTabContent>
+  <span class="test">
+
 <div *ngFor="let p of products">
     <app-product-card 
       [product] = "p"
@@ -19,9 +28,24 @@
     </app-product-card>
 </div>
 </span>
+    </template>
+  </ngb-tab>
+  <ngb-tab>
+    <template ngbTabTitle> Top 10</template>
+    <template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
+      <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
+      craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+      cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
+      yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
+      shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
+      sint qui sapiente accusamus tattooed echo park.</p>
+    </template>
+  </ngb-tab>
+</ngb-tabset>
 
-<button class="btn btn-default" (click)="showSuccess()">Toastr Tester</button>
 
-<h3>{{error}}</h3>
 
-<template ngbModalContainer></template>
+
+
+
+
