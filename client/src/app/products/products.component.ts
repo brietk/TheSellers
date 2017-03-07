@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { SellersService, Seller, SellerProduct } from '../sellers.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellerDlgComponent } from '../seller-dlg/seller-dlg.component';
 import { ProductDlgComponent } from '../product-dlg/product-dlg.component';
 import { Router, ActivatedRoute } from "@angular/router";
+import { SellersComponent } from '../sellers/sellers.component';
 import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 
 @Component({
@@ -14,12 +15,16 @@ import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 })
 
 export class ProductsComponent implements OnInit {
-  
+
+
   products: SellerProduct[];
-  private seller: Seller;
-  
+  sellers: Seller[];
+  private seller: Seller;  
   id2: number;
   error: string;
+  isEditModeSeller: boolean; 
+
+
 
 
   options: ToastOptions = { showCloseButton : false,
@@ -44,6 +49,12 @@ export class ProductsComponent implements OnInit {
       this.products = result;
     });
   }
+
+  refreshListSeller(){
+      this.service.getSellers().subscribe(result => {
+      this.sellers = result;
+    });
+}
 
   ngOnInit() {
     this.id2 = this.route.snapshot.params['id'];
@@ -84,6 +95,37 @@ export class ProductsComponent implements OnInit {
     console.log(err);
   });
 
+}
+
+
+  editSeller() {
+
+    const modalInstance = this.modalService.open(SellerDlgComponent);
+    modalInstance.componentInstance.imagePath = this.id2;
+    console.log(this.id2);
+    modalInstance.componentInstance.name = this.seller.name;
+    console.log(this.seller.name);
+    modalInstance.componentInstance.category = this.seller.category;
+    console.log(this.seller.category);
+    modalInstance.componentInstance.imagePath = this.seller.imagePath
+    console.log(this.seller.imagePath);
+    ///modalInstance.componentInstance.isEditModeSeller = true;
+
+    modalInstance.result.then(obj => {
+      console.log("Dialog was closed using OK");
+      this.service.putSeller(this.id2, obj.name, obj.category, obj.imagePath).subscribe(data => {
+      
+        this.service.getSellers().subscribe(result => {
+        this.sellers = result;
+        });
+      }, error => {
+        console.log(error.json());
+      });
+      console.log(obj);
+    }).catch(err => {
+      console.log("Dialog was cancelled");
+      console.log(err);
+    });
   }
 
   showSuccess() {
