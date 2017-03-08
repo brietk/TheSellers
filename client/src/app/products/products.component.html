@@ -15,41 +15,29 @@
 <button class="btn btn-default" (click)="showSuccess()">Toastr Tester</button>
 <h3>{{error}}</h3>
 <template ngbModalContainer></template>
+<!-- https://ng-bootstrap.github.io/#/components/tabs  -->
 <ngb-tabset>
   <ngb-tab title="Allar vörur">
     <template ngbTabContent>
-  <span class="test">
-
-<div *ngFor="let p of products">
-    <app-product-card 
-      [product] = "p"
-      (productUpdated)="onProductEdited($event)">
-      
-    </app-product-card>
-</div>
-</span>
+      <div *ngFor="let p of products">
+        <app-product-card 
+          [product] = "p"
+          (productUpdated)="onProductEdited($event)">
+        </app-product-card>
+      </div>
     </template>
   </ngb-tab>
+  
   <ngb-tab>
-    <template ngbTabTitle> Top 10</template>
+    <template ngbTabTitle><b> Top 10</b></template>
     <template ngbTabContent>
-        <span class="test">
-          <div *ngFor="let p of products">
- <app-product-card 
-      [product] = "p" 
-      (productUpdated)="onProductEdited($event)">
-      
-    </app-product-card>
-</div>
-          
-        </span>
+      <div *ngFor="let p of products | orderBy: ['quantitySold'] | slice:0:10;  " > 
+        <app-product-card 
+          [product] = "p"
+          (productUpdated)="onProductEdited($event)">
+        </app-product-card> 
+      </div>
     </template>
   </ngb-tab>
+
 </ngb-tabset>
-
-
-
-
-
-
-
