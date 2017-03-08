@@ -19,7 +19,7 @@
 <ngb-tabset>
   <ngb-tab title="Allar vörur">
     <template ngbTabContent>
-      <div *ngFor="let p of products">
+      <div *ngFor="let p of products | orderBy: ['-id']">
         <app-product-card 
           [product] = "p"
           (productUpdated)="onProductEdited($event)">
@@ -31,12 +31,13 @@
   <ngb-tab>
     <template ngbTabTitle><b> Top 10</b></template>
     <template ngbTabContent>
-      <div *ngFor="let p of products | orderBy: ['quantitySold'] | slice:0:10;  " > 
+      <div *ngFor="let p of products | orderBy: ['quantitySold'] | slice:0:10;  " >
+        <div> 
         <app-product-card 
           [product] = "p"
           (productUpdated)="onProductEdited($event)">
         </app-product-card> 
-      </div>
+      </div></div>
     </template>
   </ngb-tab>
 
