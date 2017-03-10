@@ -1,38 +1,32 @@
+.sellerstable {
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
 .addbutton {
-    margin-left: 57%
+    padding-right: 20%;
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
 }
 
-.container {
+table {
     border: 2px solid #000;
-    float:left;
-    width: 60%;
-    margin-left: 5%;
-    margin-right: 5%;
+    width: 80%;
 }
 
-.heading1, .heading2 {
-    font-weight: bold;       
-    width: 256%;
-    border-bottom: 2px solid #000;
-    padding-top: 10px;
+th, td {
+    text-align: left;
+    padding: 8px;
 }
+tr:nth-child(even){background-color: #f2f2f2}
 
-.box1 {
-   /* border: 2px solid #000;*/
-    float:left;
-    width:40%;
-    height:100%;
+th {
+    background-color: cadetblue;
+    color: white;
+        border-bottom: 2px solid #000;
 }
-.box11 {
-    float:left;
-    height:100%;
-}
-.box2 {
-   /* border: 2px solid #000;*/
-    float:left;
-    width:20%;
-}
-.box22{
-    float:left;
-    width:100%;
+td {
+    width: 10cm;
 }
