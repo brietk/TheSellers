@@ -5,13 +5,38 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
+<div class="form-group" >
+<form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
 <div class="modal-body">
-  Heiti vöru: <input [(ngModel)]="name" autofocus/><br/>
-  Verð: <input [(ngModel)]="price"/><br/>
-  Einingafjöldi: <input [(ngModel)]="quantityInStock"/><br/>
-  Mynd: <input [(ngModel)]="imagePath"/>
+
+  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['productName'].valid && complexForm.controls['productName'].touched}">
+  <label>Heiti vöru:</label>
+  <input class="form-control" [(ngModel)]="name" type="text" [formControl]="complexForm.controls['productName']" autofocus/>
+   <div *ngIf="complexForm.controls['productName'].hasError('required') && complexForm.controls['productName'].touched" class="alert alert-danger">You must include a product Name.</div>
+  </div>
+
+  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['price'].valid}">
+  <label>Verð: </label>
+   <input class="form-control" [(ngModel)]="price" type="number" [formControl]="complexForm.controls['price']" rows="10" dols="30"/> 
+   <div *ngIf="complexForm.controls['price'].hasError('required') && complexForm.controls['price'].touched" class="alert alert-danger">You must include the price of the product.</div>
+   </div>
+
+   <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['quantityInStock'].valid}">
+  <label>Einingafjöldi: </label>
+   <input class="form-control" [(ngModel)]="quantityInStock" type="number" [formControl]="complexForm.controls['quantityInStock']"/> 
+   <div *ngIf="complexForm.controls['quantityInStock'].hasError('required') && complexForm.controls['quantityInStock'].touched" class="alert alert-danger">You must include how many products are in stock.</div>
+   </div>
+
+   
+ <div class="form-group">
+    <label>Mynd:</label> 
+    <input [(ngModel)]="imagePath" type="text" [formControl]="complexForm.controls['imagePath']" />
+    </div>
 </div>
+
+
+
 <div class="modal-footer">
     <button type="button" class="btn-btn-secondary" (click)="onCancel()">Cancel</button>
-  <button type="button" class="btn-btn-success" (click)="onOK()">Ok</button>
+  <button type="submit" class="btn-btn-primary" (click)="onOK()" [disabled]="!complexForm.valid">Ok</button>
 </div>  

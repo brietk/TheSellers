@@ -25,6 +25,7 @@ export class SellerDlgComponent implements OnInit {
   category: string;
   imagePath: string;
    complexForm : FormGroup;
+   id: number;
 
 
 constructor(public activeModal: NgbActiveModal, fb: FormBuilder) {this.complexForm = fb.group({
@@ -42,11 +43,13 @@ constructor(public activeModal: NgbActiveModal, fb: FormBuilder) {this.complexFo
   }
 
   onOK(){
-    const seller: Seller = { id: 0, 
+    const seller: Seller = { id: this.id, 
                                 name: this.name, 
                                 category: this.category,
                                 imagePath: this.imagePath };
-
+    if(this.imagePath === ""){
+      seller.imagePath = "https://jobshare.net/uploads/no-image.jpg";
+    }
     this.activeModal.close(seller);
   }
 

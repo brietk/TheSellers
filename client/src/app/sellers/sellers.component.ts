@@ -48,7 +48,6 @@ refreshList(){
   modalInstance.componentInstance.name =  "";
   modalInstance.componentInstance.category = "";
   modalInstance.componentInstance.imagePath =  "";
-  
    modalInstance.result.then(obj =>{
     console.log("Dialog was closed using OK");
     console.log("Dlg obj: "+obj);

@@ -81,35 +81,7 @@ export class OrderBy implements PipeTransform {
   styleUrls: ['./products.component.css'],
   providers: [ ToastsManager ]
 })
-
-/*@Pipe({
-  name: "orderByPipe"
-})
-export class OrderByPipe implements PipeTransform{
-
- transform(array: Array<string>, args: string): Array<string> {
-
-  if(!array || array === undefined || array.length === 0) return null;
-
-    array.sort((a: any, b: any) => {
-      if (a.number < b.number) {
-        return -1;
-      } else if (a.number > b.number) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
-    return array;
-  }
-
-}*/
-
-
-
 export class ProductsComponent implements OnInit {
-  
-
 
   products: SellerProduct[];
   sellers: Seller[];
@@ -117,9 +89,6 @@ export class ProductsComponent implements OnInit {
   id2: number;
   error: string;
   isEditModeSeller: boolean; 
-
-
-
 
   options: ToastOptions = { showCloseButton : false,
                                     animate : "fade",
@@ -177,6 +146,7 @@ export class ProductsComponent implements OnInit {
     modalInstance.componentInstance.name = "";
     modalInstance.componentInstance.price = "";
     modalInstance.componentInstance.quantityInStock = "";
+    modalInstance.componentInstance.imagePath="";
   
   modalInstance.result.then(obj =>{
     console.log("Dialog was closed using OK");
