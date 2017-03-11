@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors       = require("cors");
 const _          = require("lodash");
 
+
 const app = express();
 
 app.use(cors());
@@ -143,6 +144,16 @@ app.put("/api/sellers/:id", (req, res) => {
 	res.statusCode = 200;
 	return res.send(seller);
 });
+
+app.delete("/api/sellers/:id", function (req, res) {
+	// Check if we can find the seller:
+	var id = req.params.id;
+	console.log("Þetta er id" + id);
+	//delete individual 
+	sellers.remove({_id: seller.id(id)}, function (err, doc) {
+		res.json(doc);
+	});
+})
 
 // Returns the list of products by a given seller:
 app.get("/api/sellers/:id/products", (req, res) => {
