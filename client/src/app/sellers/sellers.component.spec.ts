@@ -16,6 +16,7 @@ import { Observable } from "rxjs/Rx";
 describe('SellersComponent', () => {
   const mockService = {
     successGetSellerId: true,
+    success: true,
     sellersList: [{
       id: 1, 
       name: "Hannes",
@@ -72,12 +73,22 @@ open: jasmine.createSpy("open")
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-//aðra describe blokk ef öfugt (failar)
-  describe("should test if user with id exists", () => {
+describe('When user adds seller', () => {
+it("tostr should be called, message: 'Nýjum seljanda bætt við!'", inject([Router, SellersService], (router: Router, sellersService: SellersService) => {
+   spyOn(mockService, 'sellers').and.returnValue(mockService.sellersList);
+   spyOn(router, 'navigateByUrl').and.returnValue('');
+   mockService.successGetSellerId = true;
+   component.addSeller();
+   expect(router.navigateByUrl).toHaveBeenCalled();
+  }));
+});
+
+
+/*describe("should test if user with id exists", () => {
     mockService.successGetSellerId = true;
     mockService.sellersList = [];
     xit("when sellers service returns seller with given id", inject([Router], (router: Router) => {
@@ -87,7 +98,7 @@ open: jasmine.createSpy("open")
       //gera inspect að það element se bara synilegt en ekki annap'?
     }))
   });
-});
+});*/
 
 
 /*when sellers service returns empty ist of products", () => {
