@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { SellersService, Seller, SellerProduct } from '../sellers.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellerDlgComponent } from '../seller-dlg/seller-dlg.component';
@@ -21,19 +21,10 @@ export class SellersComponent implements OnInit {
     name: Seller;
 
 constructor(private modalService: NgbModal, private service: SellersService, 
-  private router: Router,  private route: ActivatedRoute, public toastr: ToastsManager) { }
+  private router: Router,  private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef, private app: AppComponent) {
+    this.toastr.setRootViewContainerRef(vcr);
+   }
 
-
-  options: ToastOptions = { showCloseButton : false,
-                                    animate : "fade",
-                                    positionClass: "toast-bottom-right",
-                                    maxShown: 5,
-                                    newestOnTop: true,
-                                    toastLife: 5000,
-                                    enableHTML: false,
-                                    dismiss: "auto",
-                                    messageClass: "ProductAdded",
-                                    titleClass: ""};
 
 refreshList(){
       this.service.getSellers().subscribe(result => {
@@ -66,7 +57,7 @@ refreshList(){
     console.log("Dlg obj: "+obj);
     this.service.postSeller(this.id, obj.name, obj.category, obj.imagePath).subscribe(data => {
       this.refreshList();
-      this.toastr.success('Nýjum seljanda bætt við!', null, this.options);
+      this.toastr.success('Nýjum seljanda bætt við!', null, this.app.options);
     }, error => {
       console.log(error.json());
     });
@@ -79,6 +70,6 @@ refreshList(){
 }
   toast()
   {
-      this.toastr.success('Nýjum seljanda bætt við!', null, this.options);
+      this.toastr.success('Nýjum seljanda bætt við!', null, this.app.options);
   }
 }

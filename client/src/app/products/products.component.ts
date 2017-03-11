@@ -90,21 +90,10 @@ export class ProductsComponent implements OnInit {
   id2: number;
   error: string;
   isEditModeSeller: boolean; 
-
-  options: ToastOptions = { showCloseButton : false,
-                                    animate : "fade",
-                                    positionClass: "toast-bottom-right",
-                                    maxShown: 5,
-                                    newestOnTop: true,
-                                    toastLife: 5000,
-                                    enableHTML: false,
-                                    dismiss: "auto",
-                                    messageClass: "ProductAdded",
-                                    titleClass: ""};
-
+ 
   constructor(private modalService: NgbModal, private service: SellersService, 
   private router: Router,  private route: ActivatedRoute, public toastr: ToastsManager, 
-  vcr: ViewContainerRef) {
+  vcr: ViewContainerRef, private app: AppComponent) {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
@@ -153,7 +142,7 @@ export class ProductsComponent implements OnInit {
     console.log("Dialog was closed using OK");
     this.service.postProduct(this.id2, obj.name, obj.price, obj.quantityInStock, obj.imagePath).subscribe(data => {
     this.refreshList();
-    this.toastr.success('Vara skráð!', null, this.options);
+    this.toastr.success('Vara skráð!', null, this.app.options);
       }, error => {
           console.log(error.json());
       });
@@ -180,7 +169,7 @@ export class ProductsComponent implements OnInit {
 
     modalInstance.result.then(obj => {
       console.log("Dialog was closed using OK");
-      this.toastr.success('Seljanda breytt!', null, this.options);
+      this.toastr.success('Seljanda breytt!', null, this.app.options);
       this.service.putSeller(this.seller.id, obj.name, obj.category, obj.imagePath).subscribe(data => {
       this.refreshListSeller();
 
@@ -198,7 +187,7 @@ export class ProductsComponent implements OnInit {
   showSuccess() {
 
   
-    this.toastr.success('Vara skráð!', null, this.options);
+    this.toastr.success('Vara skráð!', null, this.app.options);
 }
 
   showError() {

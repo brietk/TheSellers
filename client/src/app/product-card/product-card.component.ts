@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewContainerRef } from '@angular/core';
 import { ProductDlgComponent } from '../product-dlg/product-dlg.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellersService, SellerProduct } from '../sellers.service';
 import { Router, ActivatedRoute } from "@angular/router";
 import { ProductsComponent } from '../products/products.component';
 import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-product-card',
@@ -15,24 +16,13 @@ export class ProductCardComponent implements OnInit {
 
   id2: number;
 
-  options: ToastOptions = { showCloseButton : false,
-                                    animate : "fade",
-                                    positionClass: "toast-bottom-right",
-                                    maxShown: 5,
-                                    newestOnTop: true,
-                                    toastLife: 5000,
-                                    enableHTML: false,
-                                    dismiss: "auto",
-                                    messageClass: "ProductAdded",
-                                    titleClass: ""};
-
   @Input()
   product: SellerProduct;
 
   @Output()
   productUpdated = new EventEmitter();
   constructor(public toastr: ToastsManager, private modalService: NgbModal, private service: SellersService,
-    private route: ActivatedRoute, private products: ProductsComponent) { }
+    private route: ActivatedRoute, private products: ProductsComponent,private app: AppComponent ) { }
 
   ngOnInit() {
     this.id2 = this.route.snapshot.params['id'];
@@ -51,7 +41,7 @@ export class ProductCardComponent implements OnInit {
     modalInstance.result.then(obj => {
       console.log("Dialog was closed using OK");
       console.log("QuantityInStock: "+ obj.quantityInStock);
-       this.toastr.success('Vöru breytt!', null, this.options);
+       this.toastr.success('Vöru breytt!', null, this.app.options);
        this.service.putProduct(this.id2, this.product.id, obj.name, obj.price, obj.quantityInStock, obj.imagePath).subscribe(data => {
         this.products.refreshList();
       }, error => {

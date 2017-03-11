@@ -12,7 +12,7 @@ import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 
 export class AppComponent implements OnInit {
 
-  title = 'Söluaðilar';
+  title = 'Sölufólk';
 
   options: ToastOptions = {
     showCloseButton: false,
