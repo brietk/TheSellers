@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from "@angular/router";
-
+import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { SellersComponent } from './sellers.component';
 import { SellersService , Seller } from '../sellers.service';
 import { Observable } from "rxjs/Rx";
@@ -31,6 +31,7 @@ describe('SellersComponent', () => {
       category: "test",
       imagePath: ""
     }],
+    //þurfum að sækja toastr gögn, hvernig sem það er nú gert
     
     getSellerById: function(id) {
       return {
@@ -51,6 +52,7 @@ describe('SellersComponent', () => {
   let fixture: ComponentFixture<SellersComponent>;
 
   var mockModal = {
+    
 //modalservice hvða er það?? það er notað til að opna sellerdlgcomponent
 open: jasmine.createSpy("open")
   };
@@ -89,12 +91,13 @@ open: jasmine.createSpy("open")
 describe('When user adds seller', () => {
     mockService.successGetSellerId = true;
     mockService.sellersList = [];
-it("New seller should be added to sellersList", inject([Router, SellersService], (router: Router, sellersService: SellersService) => {
+    
+it("tostr should give success message", inject([ToastsManager, SellersService], (toastsManager: ToastsManager, sellersService: SellersService) => {
    spyOn(mockService, 'postSeller').and.returnValue(Observable.of(this.value));
-   spyOn(router, 'navigateByUrl').and.returnValue('');
+   spyOn(toastsManager, 'tostr' ).and.returnValue('');
    mockService.successGetSellerId = true;
    component.addSeller();
-   expect(router.navigateByUrl).toHaveBeenCalled();
+  // expect(hér á að vera einhvað Tostr)toHaveBeenCalled();
   }));
 });
 
