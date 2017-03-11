@@ -22,7 +22,7 @@ export class ProductCardComponent implements OnInit {
   @Output()
   productUpdated = new EventEmitter();
   constructor(public toastr: ToastsManager, private modalService: NgbModal, private service: SellersService,
-    private route: ActivatedRoute, private products: ProductsComponent,private app: AppComponent ) { }
+    private route: ActivatedRoute, private products: ProductsComponent ) { }
 
   ngOnInit() {
     this.id2 = this.route.snapshot.params['id'];
@@ -41,7 +41,7 @@ export class ProductCardComponent implements OnInit {
     modalInstance.result.then(obj => {
       console.log("Dialog was closed using OK");
       console.log("QuantityInStock: "+ obj.quantityInStock);
-       this.toastr.success('Vöru breytt!', null, this.app.options);
+       this.toastr.success('Vöru breytt!');
        this.service.putProduct(this.id2, this.product.id, obj.name, obj.price, obj.quantityInStock, obj.imagePath).subscribe(data => {
         this.products.refreshList();
       }, error => {

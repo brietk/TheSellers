@@ -57,7 +57,7 @@ refreshList(){
     console.log("Dlg obj: "+obj);
     this.service.postSeller(this.id, obj.name, obj.category, obj.imagePath).subscribe(data => {
       this.refreshList();
-      this.toastr.success('Nýjum seljanda bætt við!', null, this.app.options);
+      this.toastr.success('Nýjum seljanda bætt við!');
     }, error => {
       console.log(error.json());
     });
@@ -70,6 +70,6 @@ refreshList(){
 }
   toast()
   {
-      this.toastr.success('Nýjum seljanda bætt við!', null, this.app.options);
+      this.toastr.success('Nýjum seljanda bætt við!');
   }
 }
