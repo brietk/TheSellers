@@ -6,13 +6,21 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from "@angular/router";
 
 import { SellersComponent } from './sellers.component';
-import { SellersService } from '../sellers.service';
+import { SellersService , Seller } from '../sellers.service';
 import { Observable } from "rxjs/Rx";
 
 //NgbModal
 //SellersService
 //router
 //ActivatedRoute
+
+class SellersServiceMock {
+  value: Seller;
+  postSeller(id: number, name: string, category: string, imagePath: string): Observable<Seller> {
+    return Observable.of(this.value);
+  } 
+}
+
 describe('SellersComponent', () => {
   const mockService = {
     successGetSellerId: true,
@@ -23,6 +31,7 @@ describe('SellersComponent', () => {
       category: "test",
       imagePath: ""
     }],
+    
     getSellerById: function(id) {
       return {
         subscribe: function(fnSuccess, fnError) {
@@ -78,8 +87,10 @@ open: jasmine.createSpy("open")
   });
 
 describe('When user adds seller', () => {
-it("tostr should be called, message: 'Nýjum seljanda bætt við!'", inject([Router, SellersService], (router: Router, sellersService: SellersService) => {
-   spyOn(mockService, 'sellers').and.returnValue(mockService.sellersList);
+    mockService.successGetSellerId = true;
+    mockService.sellersList = [];
+it("New seller should be added to sellersList", inject([Router, SellersService], (router: Router, sellersService: SellersService) => {
+   spyOn(mockService, 'postSeller').and.returnValue(Observable.of(this.value));
    spyOn(router, 'navigateByUrl').and.returnValue('');
    mockService.successGetSellerId = true;
    component.addSeller();
