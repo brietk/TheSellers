@@ -57,7 +57,7 @@ export class SellersService {
       imagePath: imagePath
     })
 
-          console.error(toAdd);
+         // console.error(toAdd);
 
   let head = new Headers({'Content-Type': 'application/json'});
 

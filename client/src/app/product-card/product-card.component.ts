@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellersService, SellerProduct } from '../sellers.service';
 import { Router, ActivatedRoute } from "@angular/router";
 import { ProductsComponent } from '../products/products.component';
+import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-product-card',
@@ -14,12 +15,23 @@ export class ProductCardComponent implements OnInit {
 
   id2: number;
 
+  options: ToastOptions = { showCloseButton : false,
+                                    animate : "fade",
+                                    positionClass: "toast-bottom-right",
+                                    maxShown: 5,
+                                    newestOnTop: true,
+                                    toastLife: 5000,
+                                    enableHTML: false,
+                                    dismiss: "auto",
+                                    messageClass: "ProductAdded",
+                                    titleClass: ""};
+
   @Input()
   product: SellerProduct;
 
   @Output()
   productUpdated = new EventEmitter();
-  constructor(private modalService: NgbModal, private service: SellersService,
+  constructor(public toastr: ToastsManager, private modalService: NgbModal, private service: SellersService,
     private route: ActivatedRoute, private products: ProductsComponent) { }
 
   ngOnInit() {
@@ -38,7 +50,9 @@ export class ProductCardComponent implements OnInit {
 
     modalInstance.result.then(obj => {
       console.log("Dialog was closed using OK");
-      this.service.putProduct(this.id2, this.product.id, obj.name, obj.price, obj.quantityInStock, obj.imagePath).subscribe(data => {
+      console.log("QuantityInStock: "+ obj.quantityInStock);
+       this.toastr.success('Vöru breytt!', null, this.options);
+       this.service.putProduct(this.id2, this.product.id, obj.name, obj.price, obj.quantityInStock, obj.imagePath).subscribe(data => {
         this.products.refreshList();
       }, error => {
         console.log(error.json());

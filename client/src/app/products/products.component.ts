@@ -6,6 +6,7 @@ import { ProductDlgComponent } from '../product-dlg/product-dlg.component';
 import { Router, ActivatedRoute } from "@angular/router";
 import { SellersComponent } from '../sellers/sellers.component';
 import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
+import { AppComponent }   from '../app.component';
 
 // https://plnkr.co/edit/DHLVc0?p=info
 @Pipe({name: 'orderBy', pure: false})
@@ -179,8 +180,10 @@ export class ProductsComponent implements OnInit {
 
     modalInstance.result.then(obj => {
       console.log("Dialog was closed using OK");
+      this.toastr.success('Seljanda breytt!', null, this.options);
       this.service.putSeller(this.seller.id, obj.name, obj.category, obj.imagePath).subscribe(data => {
       this.refreshListSeller();
+
       
     }, error => {
         console.log(error.json());
@@ -214,4 +217,3 @@ export class ProductsComponent implements OnInit {
     this.toastr.custom('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
   }
 } 
-  

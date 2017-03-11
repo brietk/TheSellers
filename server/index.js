@@ -221,6 +221,8 @@ app.put("/api/sellers/:id/products/:prodId", (req, res) => {
 		return res.send("Error 400: A product must have a name specified");
 	}
 
+	console.log(product.product.quantityInStock);
+	//product.product.quantityInStock = req.body.quantityInStock;
 	product.product.name = req.body.name;
 	product.product.price = req.body.price;
 	product.product.imagePath = req.body.imagePath;

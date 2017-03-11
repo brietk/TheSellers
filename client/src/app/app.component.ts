@@ -2,54 +2,65 @@ import { Component, OnInit } from '@angular/core';
 import { SellersService, Seller, SellerProduct } from './sellers.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellerDlgComponent } from './seller-dlg/seller-dlg.component';
+import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-  export class AppComponent implements OnInit {
-  //export class AppComponent {
+
+export class AppComponent implements OnInit {
+
   title = 'Söluaðilar';
- // sellers: Seller[];
-  //products: SellerProduct[];
 
-  
+  options: ToastOptions = {
+    showCloseButton: false,
+    animate: "fade",
+    positionClass: "toast-bottom-right",
+    maxShown: 5,
+    newestOnTop: true,
+    toastLife: 5000,
+    enableHTML: false,
+    dismiss: "auto",
+    messageClass: "ProductAdded",
+    titleClass: ""
+  };
 
-constructor(private modalService: NgbModal, private service: SellersService){}
+  constructor(private modalService: NgbModal, private service: SellersService, public toastr: ToastsManager) { }
 
- ngOnInit(){
-   /*
-    this.service.getSellers().subscribe(result => {
-      this.sellers = result;
-    });
-    
-    //TODO: ekki hafa 1 harðkóðað, heldur sækja úr urlinu.
-    this.service.getSellerProducts(1).subscribe(result => {
-      this.products = result;
-    });*/
- }
+  ngOnInit() {
+    /*
+     this.service.getSellers().subscribe(result => {
+       this.sellers = result;
+     });
+     
+     //TODO: ekki hafa 1 harðkóðað, heldur sækja úr urlinu.
+     this.service.getSellerProducts(1).subscribe(result => {
+       this.products = result;
+     });*/
+  }
 
-/* onProductEdited(p: SellerProduct) {
-   console.log(p);
- }
-*/
-/*addSeller(){ 
-  const modalInstance = this.modalService.open(SellerDlgComponent);
-  modalInstance.componentInstance.sellerName =  "Daníel";
-  /*    name: "Daníel",
-    category: "Hannyrðir",
-    imagePath: "http://example.com",
-    id: 7*/
- /* modalInstance.result.then(obj =>{
-    console.log("Dialog was closed using OK");
-    console.log(obj);
-  }).catch(err => {
-    console.log("Dialog was cancelled");
-    console.log(err);
-  });
-
-  }*/
+  /* onProductEdited(p: SellerProduct) {
+     console.log(p);
+   }
+  */
+  /*addSeller(){ 
+    const modalInstance = this.modalService.open(SellerDlgComponent);
+    modalInstance.componentInstance.sellerName =  "Daníel";
+    /*    name: "Daníel",
+      category: "Hannyrðir",
+      imagePath: "http://example.com",
+      id: 7*/
+  /* modalInstance.result.then(obj =>{
+     console.log("Dialog was closed using OK");
+     console.log(obj);
+   }).catch(err => {
+     console.log("Dialog was cancelled");
+     console.log(err);
+   });
+ 
+   }*/
 }
 // array
  // private sellers: Seller[];

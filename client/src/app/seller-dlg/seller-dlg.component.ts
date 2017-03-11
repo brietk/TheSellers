@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {SellersService, SellerProduct } from '../sellers.service';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SellersService, SellerProduct } from '../sellers.service';
 import { Router, ActivatedRoute } from "@angular/router";
-import {Form, FormGroup, FormBuilder, Validators} from '@angular/forms'
+import { Form, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export class Seller {
@@ -12,12 +12,12 @@ export class Seller {
   imagePath: string;
 }
 
-
 @Component({
   selector: 'app-seller-dlg',
   templateUrl: './seller-dlg.component.html',
   styleUrls: ['./seller-dlg.component.css']
 })
+
 export class SellerDlgComponent implements OnInit {
 
   seller: Seller;
@@ -33,6 +33,7 @@ constructor(public activeModal: NgbActiveModal, fb: FormBuilder) {this.complexFo
       'category': [null, Validators.required],
       'imagePath': false
     }) }
+    
   ngOnInit() {}
 
   
