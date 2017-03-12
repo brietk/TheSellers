@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SellersService, Seller, SellerProduct } from './sellers.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SellerDlgComponent } from './seller-dlg/seller-dlg.component';
-import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-root',
@@ -14,20 +11,7 @@ export class AppComponent implements OnInit {
 
   title = 'Sölufólk';
 
-  options: ToastOptions = {
-    showCloseButton: false,
-    animate: "fade",
-    positionClass: "toast-bottom-right",
-    maxShown: 5,
-    newestOnTop: true,
-    toastLife: 5000,
-    enableHTML: false,
-    dismiss: "auto",
-    messageClass: "ProductAdded",
-    titleClass: ""
-  };
-
-  constructor(private modalService: NgbModal, private service: SellersService, public toastr: ToastsManager) { }
+  constructor() { }
 
   ngOnInit() {
     /*
