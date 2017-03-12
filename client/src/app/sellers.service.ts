@@ -27,7 +27,6 @@ export class SellersService {
   errorHandler: SellersService
   constructor(private http: Http) { }
 
-
 // GET all sellers
   getSellers(): Observable<Seller[]> {
     return this.http.get("http://localhost:5000/api/sellers").map(response => {
@@ -97,11 +96,10 @@ export class SellersService {
 
     let head = new Headers({'Content-Type': 'application/json'});
 
-    return this.http.delete(`http://localhost:5000/api/sellers/${id}`, id).map(response => {
-      console.log(response);
-      
-      return <Seller> response.json();
-    });
+    return this.http.delete(`http://localhost:5000/api/sellers/${id}`,{headers: head}).map(response => {
+            console.log(response);
+            return <Seller> response.json();
+        }); 
   }
 
   //POST add product

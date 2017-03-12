@@ -147,11 +147,17 @@ app.put("/api/sellers/:id", (req, res) => {
 
 app.delete("/api/sellers/:id", function (req, res) {
 	// Check if we can find the seller:
-	var id = req.params.id;
-	console.log("Þetta er id" + id);
+	var seller = findSellerById(parseInt(req.params.id));
+	if (!seller) {
+		res.statusCode = 404;
+		return res.send('Error 404: No seller found!');
+	}
+
+	console.log("erum inni app.delete index.js")
+	console.log(seller);
 	//delete individual 
-	sellers.remove({_id: seller.id(id)}, function (err, doc) {
-		res.json(doc);
+	sellers.remove({_id: sellers.id(id)}, function (err, seller) {
+		res.json(seller);
 	});
 })
 
