@@ -18,6 +18,59 @@
 <ngb-tabset>
   <ngb-tab title="Allar vörur">
     <template ngbTabContent>
+      <table>
+        <tr *ngFor="let p of products | orderBy: ['-id']">
+       <td>
+        <app-product-card 
+          [product] = "p"
+          (productUpdated)="onProductEdited($event)">
+        </app-product-card>
+        </td> 
+        </tr>
+        </table>
+    </template>
+  </ngb-tab>
+  
+  <ngb-tab>
+    <template ngbTabTitle><b> Top 10</b></template>
+    <template ngbTabContent>
+      <table>
+      <tr *ngFor="let p of products | orderBy: ['quantitySold'] | slice:0:10;  " >
+        <td> 
+        <app-product-card 
+          [product] = "p"
+          (productUpdated)="onProductEdited($event)">
+        </app-product-card> 
+      </td></tr>
+      </table>
+    </template>
+  </ngb-tab>
+
+</ngb-tabset>
+
+
+
+
+<!--<div class="html">
+  <div *ngIf="seller">
+
+    <img class="image" src="{{seller.imagePath}}" alt="Image of the seller" />
+    <h3 class="sellername">{{seller.name}}</h3>
+    <h4 class="sellercat"> {{seller.category}}</h4>
+  </div>
+</div>
+
+<button (click)="addProduct()">Bæta við vöru</button>
+<button (click)="editSeller()">Breyta seljanda</button>
+
+<span class="test">
+
+<h3>{{error}}</h3>
+<template ngbModalContainer></template>-->
+<!-- https://ng-bootstrap.github.io/#/components/tabs  -->
+<!--<ngb-tabset>
+  <ngb-tab title="Allar vörur">
+    <template ngbTabContent>
       <div *ngFor="let p of products | orderBy: ['-id']">
         <app-product-card 
           [product] = "p"
@@ -40,4 +93,6 @@
     </template>
   </ngb-tab>
 
-</ngb-tabset>
+</ngb-tabset>-->
+
+

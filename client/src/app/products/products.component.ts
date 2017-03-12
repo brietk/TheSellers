@@ -128,6 +128,8 @@ export class ProductsComponent implements OnInit {
   }
   
 
+  
+
   addProduct() {
 
     const modalInstance = this.modalService.open(ProductDlgComponent);
@@ -187,7 +189,7 @@ export class ProductsComponent implements OnInit {
   showSuccess() {
 
   
-    this.toastr.success('Vara skráð!', null, this.app.options);
+    this.toastr.success('Vara skráð!');
 }
 
   showError() {

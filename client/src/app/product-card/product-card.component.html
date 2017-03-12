@@ -1,9 +1,10 @@
-<div *ngIf="product">
-  <h3>{{product.name}}</h3>
-  <img [src]="product.imagePath" style="width: 80px" />
+<div class="productpic" *ngIf="product">
+
+  <img [src]="product.imagePath" style="width: 150px" style="height: 150px" />
+  <h4>{{product.name}}</h4>
   <i>Price: {{product.price}}</i><br>
   <i>Available: {{product.quantityInStock}}</i><br>
-  <i>Items sold: {{product.quantitySold}}</i>
+  <i>Items sold: {{product.quantitySold}}</i><br>
 
   <button class="btn-primary" (click)="OnEdit()">Breyta vöru</button>
 </div>  

@@ -25,14 +25,14 @@
 
  <div class="form-group">
     <label>Mynd:</label> 
-    <input [(ngModel)]="imagePath" type="text" [formControl]="complexForm.controls['imagePath']" />
+    <input class="form-control" [(ngModel)]="imagePath" type="text" [formControl]="complexForm.controls['imagePath']" />
     </div>
 </div>
 
 <div class="modal-footer">
     <button type="button" class="btn-btn-secondary" (click)="onCancel()">Cancel</button>
 
-  <button type="submit" class="btn-btn-primary" (click)="onOK()"  [disabled]="!complexForm.valid" >Ok</button>
+  <button type="submit" class="btn-btn-primary" (click)="onOK()"  [disabled]="!complexForm.valid" >Save</button>
    
 </div>
 
