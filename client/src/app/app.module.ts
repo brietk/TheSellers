@@ -49,7 +49,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
       component: ProductsComponent
     }])
   ],
-  providers: [SellersService],
+  providers: [SellersService, RouterModule],
   bootstrap: [AppComponent],
   entryComponents: [SellerDlgComponent, ProductDlgComponent, ProductCardComponent]
 })

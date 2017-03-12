@@ -3,9 +3,8 @@ import { SellersService, Seller, SellerProduct } from '../sellers.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellerDlgComponent } from '../seller-dlg/seller-dlg.component';
 import { ProductDlgComponent } from '../product-dlg/product-dlg.component';
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, /*ActivatedRoute,*/ RouterModule, Routes } from "@angular/router";
 import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
-import { AppComponent }   from '../app.component';
 
 @Component({
   selector: 'app-sellers',
@@ -20,17 +19,18 @@ export class SellersComponent implements OnInit {
     error: string;
     name: Seller;
 
-constructor(private modalService: NgbModal, private service: SellersService, 
-  private router: Router,  private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef, private app: AppComponent) {
+  constructor(private modalService: NgbModal, private service: SellersService, 
+              private router: Router, /* private route: ActivatedRoute,*/ 
+              public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
-   }
+  }
 
 
-refreshList(){
+  refreshList(){
       this.service.getSellers().subscribe(result => {
       this.sellers = result;
     });
-}
+  }
 
   ngOnInit() {
     this.refreshList();

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SellersService, Seller, SellerProduct } from './sellers.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SellerDlgComponent } from './seller-dlg/seller-dlg.component';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +11,7 @@ export class AppComponent implements OnInit {
 
   title = 'Sölufólk';
 
-  constructor(private modalService: NgbModal, private service: SellersService, public toastr: ToastsManager) { }
+  constructor() { }
 
   ngOnInit() {
     /*
