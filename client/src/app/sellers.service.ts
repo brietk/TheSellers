@@ -90,15 +90,15 @@ export class SellersService {
     });
   }
 
-   deleteSeller(id: number): Observable<Seller> {
-    console.log("inni í deleteSeller");
+   deleteProduct(id: number, prodId: number): Observable<SellerProduct> {
+    console.log("inni í deleteProduct");
 
 
     let head = new Headers({'Content-Type': 'application/json'});
 
-    return this.http.delete(`http://localhost:5000/api/sellers/${id}`,{headers: head}).map(response => {
+    return this.http.delete(`http://localhost:5000/api/sellers/${id}/products/${prodId}`).map(response => {
             console.log(response);
-            return <Seller> response.json();
+            return <SellerProduct> response.json();
         }); 
   }
 

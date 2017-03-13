@@ -53,4 +53,11 @@ export class ProductCardComponent implements OnInit {
       console.log(err);
     });
   }
+
+  OnDelete() {
+
+    this.service.deleteProduct(this.id2, this.product.id).subscribe(data => {
+      this.products.refreshList();
+    })
+  }
 }

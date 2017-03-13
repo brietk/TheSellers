@@ -128,8 +128,6 @@ export class ProductsComponent implements OnInit {
   }
   
 
-  
-
   addProduct() {
 
     const modalInstance = this.modalService.open(ProductDlgComponent);
@@ -186,12 +184,6 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  deleteSeller() {
-
-    this.service.deleteSeller(this.seller.id).subscribe(data => {
-      this.refreshListSeller();
-    })
-  }
 
   showSuccess() {
 

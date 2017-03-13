@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const cors       = require("cors");
 const _          = require("lodash");
 
-
 const app = express();
 
 app.use(cors());
@@ -21,12 +20,12 @@ function createSeller(id, name, category, img) {
 }
 
 // Another helper function.
-function createProduct(sellerid, id, name, price, quantitySold, quantityInStock, path) {
+function createProduct(sellerid, id, productName, price, quantitySold, quantityInStock, path) {
 	return {
 		id: sellerid,
 		product: {
 			id: id,
-			name: name,
+			name: productName,
 			price: price,
 			quantitySold: quantitySold,
 			quantityInStock: quantityInStock,
@@ -124,7 +123,7 @@ app.post("/api/sellers", (req, res) => {
 
 app.put("/api/sellers/:id", (req, res) => {
 	// Check if we can find the seller:
-	var seller = findSellerById(parseInt(req.params.id));
+	var seller = findSellerById(req.params.id);
 	if (!seller) {
 		res.statusCode = 404;
 		return res.send('Error 404: No seller found!');
@@ -145,22 +144,6 @@ app.put("/api/sellers/:id", (req, res) => {
 	return res.send(seller);
 });
 
-app.delete("/api/sellers/:id", function (req, res) {
-	// Check if we can find the seller:
-	var seller = findSellerById(parseInt(req.params.id));
-	if (!seller) {
-		res.statusCode = 404;
-		return res.send('Error 404: No seller found!');
-	}
-
-	console.log("erum inni app.delete index.js")
-	console.log(seller);
-	//delete individual 
-	sellers.remove({_id: sellers.id(id)}, function (err, seller) {
-		res.json(seller);
-	});
-})
-
 // Returns the list of products by a given seller:
 app.get("/api/sellers/:id/products", (req, res) => {
 	var sellerProducts = [];
@@ -177,6 +160,7 @@ app.get("/api/sellers/:id/products", (req, res) => {
 
 // Adds a product to the catalog of a given seller:
 app.post("/api/sellers/:id/products", (req, res) => {
+
 	// Validate seller:
 	var seller = findSellerById(parseInt(req.params.id));
 	if (!seller) {
@@ -200,10 +184,40 @@ app.post("/api/sellers/:id/products", (req, res) => {
 	return res.send(newProduct);
 });
 
+app.delete("/api/sellers/:id/products/:prodId", (req, res) => {
+
+    console.log("inní app.delete");
+    // Validate seller:
+	var seller = findSellerById(parseInt(req.params.id));
+	if (!seller) {
+		res.statusCode = 404;
+		return res.send('Error 404: Seller with the given ID was not found');
+	}
+
+    // Find the product which should be updated:
+	var prodId = parseInt(req.params.prodId);
+	var product = _.find(products, p => {
+		return p.product.id === prodId;
+	});
+	if (!product) {
+		res.statusCode = 404;
+		return res.send("Error: product not found!");
+	}
+
+    	// Validate that the product does indeed belong to this seller:
+	if (product.id !== seller.id) {
+		res.statusCode = 400;
+		return res.send("400: Product does not belong to this seller!");
+	}
+
+    console.log("eyda þessari voru:" + prodId);
+    products.splice(prodId, 1);
+
+
+});
+
 app.put("/api/sellers/:id/products/:prodId", (req, res) => {
 	// Validate seller:
-	console.log(req.params.id);
-	console.log(req.params.prodId);
 	var seller = findSellerById(parseInt(req.params.id));
 	if (!seller) {
 		res.statusCode = 404;
@@ -238,8 +252,6 @@ app.put("/api/sellers/:id/products/:prodId", (req, res) => {
 		return res.send("Error 400: A product must have a name specified");
 	}
 
-	console.log(product.product.quantityInStock);
-	//product.product.quantityInStock = req.body.quantityInStock;
 	product.product.name = req.body.name;
 	product.product.price = req.body.price;
 	product.product.imagePath = req.body.imagePath;
