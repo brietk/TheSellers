@@ -211,8 +211,9 @@ app.delete("/api/sellers/:id/products/:prodId", (req, res) => {
 	}
 
     console.log("eyda þessari voru:" + prodId);
+    
     products.splice(prodId, 1);
-
+        
 
 });
 
