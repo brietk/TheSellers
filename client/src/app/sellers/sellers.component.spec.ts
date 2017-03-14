@@ -2,7 +2,7 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsManager, ToastOptions, ToastModule } from 'ng2-toastr/ng2-toastr';
 import { SellersComponent } from './sellers.component';
 import { SellersService, Seller } from '../sellers.service';
@@ -17,12 +17,24 @@ import { Router, ActivatedRoute, RouterModule, Routes } from "@angular/router";
 
 class SellersServiceMock {
   value: Seller;
-  postSeller(id: number, name: string, category: string, imagePath: string): Observable<Seller> {
-    return Observable.of(this.value);
-  }
-  toast(){
-  }
+   postSeller(id: number, name: string, category: string, imagePath: string): Observable<Seller> {
+      return Observable.of(this.value);
+    }
 }
+
+class mockHTTP {
+  
+}
+
+var mockModal = {
+    modalservice: jasmine.createSpy("modalservice")
+};
+
+var mockRouter = {
+  navigate: jasmine.createSpy("navigate")
+}
+
+let mockService = new SellersServiceMock();
 
 describe('SellersComponent', () => {
   const mockService = {
@@ -58,23 +70,11 @@ describe('SellersComponent', () => {
         }
       }
     },
-    postSeller: function(id: number, name: string, category: string, imagePath: string): Observable<Seller> {
-
-      return null;
-    }
   }
 
   let component: SellersComponent;
   let fixture: ComponentFixture<SellersComponent>;
 
-  var mockModal = {
-
-    //modalservice hvða er það?? það er notað til að opna sellerdlgcomponent
-    //BK - skoða þetta: open: jasmine.createSpy("open")
-  };
-  var mockRouter = {
-    navigate: jasmine.createSpy("navigate")
-  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -85,7 +85,7 @@ describe('SellersComponent', () => {
         useValue: mockService
       }, {
         provide: NgbModal,
-        // useValue:
+        useValue: mockModal
       },
       {
         provide: Router,
@@ -105,16 +105,24 @@ describe('SellersComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  /*describe('When user adds seller', () => {
+  describe('add seller', () => {
     mockService.successGetSellerId = true;
-    mockService.sellersList = [];
+    //mockService.sellersList = [];
 
-    xit("tostr should give success message", inject([ToastsManager, SellersService], (toastsManager: ToastsManager, sellersService: SellersService) => {
+    it("it should display a modal dialog if the user tries to add a new seller", inject([SellersService,  NgbModal], (ngbModal: NgbModal, sellersService: SellersService) => {
       spyOn(mockService, 'postSeller').and.returnValue(Observable.of(this.value));
-      //spyOn(toastsManager, 'toast').and.returnValue();
+      spyOn(mockModal, 'modalservice').and.returnValue("");
       mockService.successGetSellerId = true;
       component.addSeller();
-      expect(SellersServiceMock.toast()).toHaveBeenCalled();
+      expect(mockModal.modalservice).toHaveBeenCalled();
+    }));
+
+    xit("it should try to add a new seller if the modal dialog is closed using the OK button", inject([ToastsManager, SellersService], (toastsManager: ToastsManager, sellersService: SellersService) => {
+      spyOn(mockService, 'addSeller').and.returnValue(Observable.of(this.value));
+      
+      mockService.successGetSellerId = false;
+      component.addSeller();
+      //expect().toHaveBeenCalled();
     }));
   });
 

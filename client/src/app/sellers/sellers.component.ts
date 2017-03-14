@@ -18,6 +18,8 @@ export class SellersComponent implements OnInit {
     id: number;
     error: string;
     name: Seller;
+    successHandler: boolean;
+    errorHandler: boolean;
 
   constructor(private modalService: NgbModal, private service: SellersService, 
               private router: Router, /* private route: ActivatedRoute,*/ 
@@ -46,8 +48,11 @@ export class SellersComponent implements OnInit {
     this.service.getSellerById(this.id).subscribe(successHandler, errorHandler);
   }
   
-
-  addSeller(){ 
+  getSeller() {
+    this.service.getSellerById(this.id).subscribe(data => {
+    });
+  }
+  addSeller() { 
   const modalInstance = this.modalService.open(SellerDlgComponent);
   modalInstance.componentInstance.name =  "";
   modalInstance.componentInstance.category = "";
