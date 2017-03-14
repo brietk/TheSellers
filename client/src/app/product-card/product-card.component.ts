@@ -43,6 +43,7 @@ export class ProductCardComponent implements OnInit {
       console.log("QuantityInStock: "+ obj.quantityInStock);
        this.toastr.success('Vöru breytt!');
        this.service.putProduct(this.id2, this.product.id, obj.name, obj.price, obj.quantityInStock, obj.imagePath).subscribe(data => {
+        console.log("ég er inní onEdit");
         this.products.refreshList();
       }, error => {
         console.log(error.json());
@@ -55,8 +56,11 @@ export class ProductCardComponent implements OnInit {
   }
 
   OnDelete() {
-
+    this.toastr.success("vara eydd!");
+    console.log("id2 " + this.id2);
+    console.log("prodID " + this.product.id);
     this.service.deleteProduct(this.id2, this.product.id).subscribe(data => {
+      console.log("ég er inní OnDelete");
       this.products.refreshList();
     })
   }

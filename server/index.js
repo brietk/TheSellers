@@ -194,7 +194,7 @@ app.delete("/api/sellers/:id/products/:prodId", (req, res) => {
 		return res.send('Error 404: Seller with the given ID was not found');
 	}
 
-    // Find the product which should be updated:
+    // Find the product which should be deleted:
 	var prodId = parseInt(req.params.prodId);
 	var product = _.find(products, p => {
 		return p.product.id === prodId;
@@ -211,10 +211,17 @@ app.delete("/api/sellers/:id/products/:prodId", (req, res) => {
 	}
 
     console.log("eyda þessari voru:" + prodId);
-    
-    products.splice(prodId, 1);
-        
-
+    console.log("product: ");
+    console.log(product);
+    //console.log("products: "+ products);
+   
+   var index = products.indexOf(product);
+   console.log(index);
+   if(index > -1) {
+       console.log("delete: " + index);
+        products.splice(index, 1);
+   }
+   console.log(products);
 });
 
 app.put("/api/sellers/:id/products/:prodId", (req, res) => {

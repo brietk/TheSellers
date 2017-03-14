@@ -96,7 +96,7 @@ export class SellersService {
 
     //let head = new Headers({'Content-Type': 'application/json'});
 
-    return this.http.delete(`http://localhost:5000/api/sellers/${id}/products/${prodId}`).map(response => {
+    return this.http.delete(`http://localhost:5000/api/sellers/${id}/products/${prodId}`,prodId).map(response => {
             console.log(response);
             return <SellerProduct> response.json();
         }); 
