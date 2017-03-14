@@ -90,16 +90,17 @@ export class SellersService {
     });
   }
 
-   deleteProduct(id: number, prodId: number): Observable<SellerProduct> {
+   deleteProduct(id: number, prodId: number): Observable<boolean> {
     console.log("inni í deleteProduct");
 
 
     //let head = new Headers({'Content-Type': 'application/json'});
 
-    return this.http.delete(`http://localhost:5000/api/sellers/${id}/products/${prodId}`,prodId).map(response => {
-            console.log(response);
-            return <SellerProduct> response.json();
-        }); 
+    return this.http.delete(`http://localhost:5000/api/sellers/${id}/products/${prodId}`,prodId).map(success => {
+      console.log("eg er inní delete skipun");
+      return true; 
+    });
+
   }
 
   //POST add product
