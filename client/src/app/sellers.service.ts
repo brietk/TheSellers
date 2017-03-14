@@ -98,7 +98,7 @@ export class SellersService {
 
     return this.http.delete(`http://localhost:5000/api/sellers/${id}/products/${prodId}`,prodId).map(success => {
       console.log("eg er inní delete skipun");
-      return true; 
+      return true;
     });
 
   }

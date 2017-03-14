@@ -13,9 +13,11 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent implements OnInit {
-
+  
+  SellerProduct: SellerProduct[];
   id2: number;
   deleteFailed: boolean = false;
+
 
   @Input()
   product: SellerProduct;
@@ -66,7 +68,7 @@ export class ProductCardComponent implements OnInit {
       this.products.refreshList();
       this.deleteFailed = !success; 
       if(success === true) {
-        this.products.refreshList();
+         this.products.refreshList();
       }
     }, error => {
         console.log(error.json());

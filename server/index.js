@@ -222,6 +222,10 @@ app.delete("/api/sellers/:id/products/:prodId", (req, res) => {
         products.splice(index, 1);
    }
    console.log(products);
+
+   	// Success!
+	res.statusCode = 200;
+	return res.send(true);
 });
 
 app.put("/api/sellers/:id/products/:prodId", (req, res) => {
