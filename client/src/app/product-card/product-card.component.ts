@@ -59,10 +59,12 @@ export class ProductCardComponent implements OnInit {
   }
 
   OnDelete() {
-    this.toastr.success("vara eydd!");
+    
     console.log("id2 " + this.id2);
     console.log("prodID " + this.product.id);
-    
+
+    if(confirm("ertu viss um að þú viljir eyða vöru?") == true) {
+    this.toastr.success("Vöru eytt!");
     this.service.deleteProduct(this.id2, this.product.id).subscribe(success => {
       console.log("ég er inní OnDelete");
       this.products.refreshList();
@@ -73,5 +75,8 @@ export class ProductCardComponent implements OnInit {
     }, error => {
         console.log(error.json());
       });
+    } else {
+      this.toastr.success("hætt við að eyða vöru!");
+    }
   }
 }
