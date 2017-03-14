@@ -20,6 +20,8 @@ class SellersServiceMock {
   postSeller(id: number, name: string, category: string, imagePath: string): Observable<Seller> {
     return Observable.of(this.value);
   }
+  toast(){
+  }
 }
 
 describe('SellersComponent', () => {
@@ -103,16 +105,16 @@ describe('SellersComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('When user adds seller', () => {
+  /*describe('When user adds seller', () => {
     mockService.successGetSellerId = true;
     mockService.sellersList = [];
 
     xit("tostr should give success message", inject([ToastsManager, SellersService], (toastsManager: ToastsManager, sellersService: SellersService) => {
       spyOn(mockService, 'postSeller').and.returnValue(Observable.of(this.value));
-      spyOn(toastsManager, 'toastr').and.returnValue('');
+      //spyOn(toastsManager, 'toast').and.returnValue();
       mockService.successGetSellerId = true;
       component.addSeller();
-      // expect(hér á að vera einhvað Tostr)toHaveBeenCalled();
+      expect(SellersServiceMock.toast()).toHaveBeenCalled();
     }));
   });
 
@@ -134,6 +136,6 @@ describe('SellersComponent', () => {
     mockService.successGetSellerId = true;
     mockService.sellersList = [];
     it("should display a message indicating that no produucts are to be displayed", () => {
-      //gera inspect að það element se bara synilegt en ekki annap'?
+      //gera inspect að það element se bara synilegt en ekki annap'?*/
 
-    })*/
+    })
