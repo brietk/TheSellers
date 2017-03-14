@@ -64,7 +64,7 @@ export class ProductCardComponent implements OnInit {
     console.log("prodID " + this.product.id);
 
     if(confirm("ertu viss um að þú viljir eyða vöru?") == true) {
-    this.toastr.success("Vöru eytt!");
+    this.toastr.warning("Vöru eytt!");
     this.service.deleteProduct(this.id2, this.product.id).subscribe(success => {
       console.log("ég er inní OnDelete");
       this.products.refreshList();
