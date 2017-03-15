@@ -24,3 +24,11 @@ div.html {
 table{
     border: 2px solid #000;
 }
+
+div.col-md-3{
+    padding: 0px 10px 0px 10px;
+}
+
+div.row{
+    margin: 0px 0px 0px 0px;
+}

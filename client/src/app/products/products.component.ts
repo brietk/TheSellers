@@ -8,7 +8,6 @@ import { SellersComponent } from '../sellers/sellers.component';
 import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { AppComponent }   from '../app.component';
 
-// https://plnkr.co/edit/DHLVc0?p=info
 @Pipe({name: 'orderBy', pure: false})
 export class OrderBy implements PipeTransform {
 
@@ -184,9 +183,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-
   showSuccess() {
-
   
     this.toastr.success('Vara skráð!');
 }

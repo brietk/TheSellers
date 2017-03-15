@@ -2,8 +2,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDlgComponent } from './product-dlg.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('ProductDlgComponent', () => {
   let component: ProductDlgComponent;
@@ -11,7 +12,9 @@ describe('ProductDlgComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductDlgComponent ]
+      declarations: [ProductDlgComponent],
+      imports: [ReactiveFormsModule],
+      providers: [NgbActiveModal]
     })
     .compileComponents();
   }));
@@ -22,7 +25,7 @@ describe('ProductDlgComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
